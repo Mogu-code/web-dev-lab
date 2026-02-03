@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Animation Percentages</title>
+  <style>
+    body{
+      font-family: Arial;
+      text-align:center;
+      padding:30px;
+      background:#f0fff8;
+    }
+    .box{
+      width:200px;
+      height:120px;
+      border-radius:16px;
+      margin:60px auto;
+      animation: colors 4s ease-in-out 1s infinite alternate;
+    }
+
+    @keyframes colors {
+      0%   { background:#ff0000; }
+      25%  { background:blue; }
+      50%  { background:white; border:2px solid #999; }
+      75%  { background:yellow; }
+      100% { background:#ff0000; }
+    }
+  </style>
+</head>
+<body>
+  <h2>CSS Animation using % keyframes</h2>
+  <div class="box"></div>
+</body>
+</html>

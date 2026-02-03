@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>3 Dice Roller</title>
+
+<script>
+function rollThreeDice() {
+
+    var d1 = Math.floor(Math.random() * 6) + 1;
+    var d2 = Math.floor(Math.random() * 6) + 1;
+    var d3 = Math.floor(Math.random() * 6) + 1;
+
+    document.getElementById("dice1").src =
+        "https://upload.wikimedia.org/wikipedia/commons/" +
+        (d1 == 1 ? "1/1b/Dice-1-b.svg" :
+         d1 == 2 ? "5/5f/Dice-2-b.svg" :
+         d1 == 3 ? "b/b1/Dice-3-b.svg" :
+         d1 == 4 ? "f/fd/Dice-4-b.svg" :
+         d1 == 5 ? "0/08/Dice-5-b.svg" :
+                   "2/26/Dice-6-b.svg");
+
+    document.getElementById("dice2").src =
+        "https://upload.wikimedia.org/wikipedia/commons/" +
+        (d2 == 1 ? "1/1b/Dice-1-b.svg" :
+         d2 == 2 ? "5/5f/Dice-2-b.svg" :
+         d2 == 3 ? "b/b1/Dice-3-b.svg" :
+         d2 == 4 ? "f/fd/Dice-4-b.svg" :
+         d2 == 5 ? "0/08/Dice-5-b.svg" :
+                   "2/26/Dice-6-b.svg");
+
+    document.getElementById("dice3").src =
+        "https://upload.wikimedia.org/wikipedia/commons/" +
+        (d3 == 1 ? "1/1b/Dice-1-b.svg" :
+         d3 == 2 ? "5/5f/Dice-2-b.svg" :
+         d3 == 3 ? "b/b1/Dice-3-b.svg" :
+         d3 == 4 ? "f/fd/Dice-4-b.svg" :
+         d3 == 5 ? "0/08/Dice-5-b.svg" :
+                   "2/26/Dice-6-b.svg");
+
+    document.getElementById("result").innerHTML =
+        "Dice Values: " + d1 + ", " + d2 + ", " + d3;
+}
+</script>
+
+</head>
+
+<body style="text-align:center; font-family:Arial;">
+
+<h2>Roll a Dice</h2>
+
+<img id="dice1" width="100"
+src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Dice-1-b.svg">
+
+<img id="dice2" width="100"
+src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Dice-1-b.svg">
+
+<img id="dice3" width="100"
+src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Dice-1-b.svg">
+
+<br><br>
+
+<button onclick="rollThreeDice()" style="padding:10px 20px;">
+    Roll 3 Dice
+</button>
+
+<p id="result"></p>
+
+</body>
+</html>

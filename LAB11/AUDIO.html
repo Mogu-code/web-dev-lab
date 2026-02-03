@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML5 Audio</title>
+  <style>
+    body{
+      font-family: Arial;
+      text-align:center;
+      padding:30px;
+      background:#eef7ff;
+    }
+    .box{
+      max-width:600px;
+      margin:auto;
+      padding:20px;
+      background:white;
+      border-radius:0px
+;
+      
+    }
+    code{background:#f2f2f2;padding:3px 6px;border-radius:0;}
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>HTML5 Audio Element</h2>
+
+    <p><b>Supported formats:</b> MP3, WAV, OGG</p>
+
+    <audio controls autoplay loop>
+      <source src="sample.mp3" type="audio/mpeg">
+      <source src="sample.ogg" type="audio/ogg">
+      <source src="sample.wav" type="audio/wav">
+      Your browser does not support the audio element.
+    </audio>
+
+    <p>
+      Attributes used: <code>controls</code> <code>autoplay</code> <code>muted</code> <code>loop</code>
+    </p>
+  </div>
+
+</body>
+</html>

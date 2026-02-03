@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LAB 11 - CSS Animation Parameters</title>
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#f4f6ff;
+      padding:20px;
+    }
+
+    h2{ text-align:center; }
+
+    .box{
+      width:120px;
+      height:120px;
+      border-radius:0px;
+      background:linear-gradient(45deg,#ff4b2b,#ff416c);
+      margin:40px auto;
+      animation-name: moveGlow;              /* 1 name */
+      animation-duration: 4s;               /* 3 duration */
+      animation-timing-function: ease-in-out;/* 4 timing-function */
+      animation-delay: 1s;                  /* 5 delay */
+      animation-iteration-count: infinite;  /* 6 iteration-count */
+      animation-direction: alternate;       /* 2 direction */
+      animation-fill-mode: forwards;        /* 7 fill-mode */
+      animation-play-state: running;        /* 8 play-status */
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+
+    @keyframes moveGlow {
+      0%   { transform: translateX(-150px) scale(1);   box-shadow: 0 0 0 rgba(0,0,0,0); }
+      50%  { transform: translateX(0px)    scale(1.2); box-shadow: 0 0 20px rgba(0,0,0,0.25); }
+      100% { transform: translateX(150px)  scale(1);   box-shadow: 0 0 0 rgba(0,0,0,0); }
+    }
+
+    .panel{
+      max-width:700px;
+      margin:auto;
+      background:#fff;
+      padding:15px;
+      border-radius:0px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    button{
+      padding:10px 14px;
+      margin:5px;
+      border:none;
+      border-radius:0px;
+      cursor:pointer;
+      font-weight:bold;
+      background:#2b59ff;
+      color:white;
+    }
+    button:hover{ opacity:0.9; }
+
+    .info{
+      font-size:14px;
+      line-height:1.6;
+      background:#eef2ff;
+      padding:10px;
+      border-radius:0px;
+      margin-top:10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>CSS Animation Parameters Demo</h2>
+
+  <div class="box" id="animBox"></div>
+
+  <div class="panel">
+    <button onclick="pauseAnim()">Pause</button>
+    <button onclick="playAnim()">Play</button>
+    <button onclick="setOnce()">Run Only 1 Time</button>
+    <button onclick="setInfinite()">Infinite</button>
+
+    <div class="info">
+      <b>Used animation properties:</b><br>
+      1) animation-name: moveGlow<br>
+      2) animation-direction: alternate<br>
+      3) animation-duration: 4s<br>
+      4) animation-timing-function: ease-in-out<br>
+      5) animation-delay: 1s<br>
+      6) animation-iteration-count: infinite / 1<br>
+      7) animation-fill-mode: forwards<br>
+      8) animation-play-state: running / paused
+    </div>
+  </div>
+
+  <script>
+    const box = document.getElementById("animBox");
+
+    function pauseAnim(){
+      box.style.animationPlayState = "paused";
+    }
+    function playAnim(){
+      box.style.animationPlayState = "running";
+    }
+    function setOnce(){
+      box.style.animationIterationCount = "1";
+    }
+    function setInfinite(){
+      box.style.animationIterationCount = "infinite";
+    }
+  </script>
+</body>
+</html>

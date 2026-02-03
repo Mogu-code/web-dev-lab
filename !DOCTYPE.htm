@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>NFT Page Practice</title>
+
+    <!-- CSS INSIDE SAME FILE -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #222;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .page {
+            width: 1000px;
+            background: #f4f4f4;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        /* TOP NAVBAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 30px;
+            border-bottom: 1px solid #ccc;
+            background: #faf8fb;
+            font-size: 14px;
+        }
+
+        .logo {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-links span {
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .nav-right button {
+            margin-left: 10px;
+            padding: 6px 14px;
+            font-size: 12px;
+            border: 1px solid #000;
+            background: white;
+            cursor: pointer;
+        }
+
+        .nav-right .signup-btn {
+            background: #fce4ff;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: #f5ff7a;
+            padding: 60px 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .search-row {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-row input {
+            width: 400px;
+            padding: 10px;
+            border: 2px solid #000;
+        }
+
+        .search-row .filter-btn,
+        .search-row .find-btn {
+            padding: 10px 16px;
+            border: 2px solid #000;
+            background: #ffffff;
+            cursor: pointer;
+        }
+
+        .search-row .find-btn {
+            background: #cdd5ff;
+        }
+
+        .hero-small {
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        /* CONTENT SECTION */
+        .content {
+            padding: 25px 40px 40px 40px;
+        }
+
+        .content-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .content-top h2 {
+            font-size: 20px;
+        }
+
+        .sort-by {
+            font-size: 13px;
+        }
+
+        .sort-by span {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        /* CARDS ROW */
+        .cards {
+            display: flex;
+            gap: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 2px solid #000;
+            width: 210px;
+            font-size: 13px;
+        }
+
+        .card-image {
+            height: 140px;
+        }
+
+        .card-image.one { background: #ffb6c8; }
+        .card-image.two { background: #ffe38f; }
+        .card-image.three { background: #c6c6ff; }
+        .card-image.four { background: #ffd4ff; }
+
+        .card-body {
+            padding: 10px 12px 12px 12px;
+        }
+
+        .card-title {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .card-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        .card-row button {
+            padding: 4px 8px;
+            border: 1px solid #000;
+            background: #dde0ff;
+            cursor: pointer;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="logo">TOKENIZER</div>
+
+        <div class="nav-links">
+            <span>About us</span>
+            <span><b>Catalog</b></span>
+            <span>Blog</span>
+        </div>
+
+        <div class="nav-right">
+            <button>Login</button>
+            <button class="signup-btn">Sign up</button>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1>Find your perfect NFT<br>to reach the next level</h1>
+        <p>Search by name or use filters</p>
+
+        <div class="search-row">
+            <input type="text" placeholder="Search by name or use filters">
+            <button class="filter-btn">☰</button>
+            <button class="find-btn">Find NFTs</button>
+        </div>
+
+        <div class="hero-small">
+            <b>Trending:</b> animals &nbsp; pixelart &nbsp; by Meg$$$
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+        <div class="content-top">
+            <h2>New</h2>
+            <div class="sort-by">
+                Sort by:
+                <span><b>newest</b></span>
+                <span>cheapest</span>
+                <span>hottest</span>
+            </div>
+        </div>
+
+        <div class="cards">
+            <!-- CARD 1 -->
+            <div class="card">
+                <div class="card-image one"></div>
+                <div class="card-body">
+                    <div class="card-title">Cup of tea #1</div>
+                    <div>Current bid: 0.002 BTC</div>
+                    <div class="card-row">
+                        <span></span>
+                        <button>Place a bid</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="card">
+                <div class="card-image two"></div>
+                <div class="card-body">
+                    <div class="card-title">Hot guy #32113</div>
+                    <div>Current bid: 0.003 BTC</div>
+                    <div class="card-row">
+                        <span></span>
+                        <button>Place a bid</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="card">
+                <div class="card-image three"></div>
+                <div class="card-body">
+                    <div class="card-title">Skeleton #1</div>
+                    <div>Current bid: 0.0022 BTC</div>
+                    <div class="card-row">
+                        <span></span>
+                        <button>Place a bid</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 4 -->
+            <div class="card">
+                <div class="card-image four"></div>
+                <div class="card-body">
+                    <div class="card-title">Skeleton #311</div>
+                    <div>Current bid: 0.0012 BTC</div>
+                    <div class="card-row">
+                        <span></span>
+                        <button>Place a bid</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

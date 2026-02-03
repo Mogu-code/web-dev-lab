@@ -1,0 +1,342 @@
+<style>
+header{
+ background-color:blue;
+padding:10px;
+text-align:center;
+}
+ nav {
+            background-color: #fffaf5;
+            text-align: center;
+            padding: 10px;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 20px;
+        }
+nav a {
+            text-decoration: none;
+            color: #555;
+            margin: 15px;
+            font-weight: bold;
+            padding-bottom: 5px;
+        }
+
+</style>
+
+
+<body>
+<header> 
+<h1>GASTRO</h1>
+<p> newnew</p>
+</header>
+<nav>
+<a href=#> italian</a><a href=#> italian</a><a href=#> italian</a><a href=#> italian</a>
+</nav>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GastroGrid Menu</title>
+    <style>
+        /* Basic Reset and Page Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdf2e9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* Header Section */
+        header {
+            background-color: #7b3030;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 4px 4px 0 0;
+        }
+
+        header h1 { margin: 0; font-size: 32px; }
+        header p { margin: 5px 0 0; font-style: italic; opacity: 0.9; }
+
+        /* Navigation Tabs */
+        nav {
+            background-color: #fffaf5;
+            text-align: center;
+            padding: 10px;
+            border-bottom: 2px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #555;
+            margin: 0 15px;
+            font-weight: bold;
+            padding-bottom: 5px;
+        }
+
+        nav a.active { border-bottom: 3px solid #7b3030; color: #000; }
+
+        /* Main Grid Layout */
+        .container {
+            display: flex;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .column { flex: 1; display: flex; flex-direction: column; gap: 20px; }
+
+        /* Cuisine Section Box */
+        .cuisine-section {
+            background-color: #f4ecd8;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        .section-title {
+            padding: 10px 15px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Color Coding for Sections */
+        .italian { background-color: #5d714a; }
+        .mexican { background-color: #d96a40; }
+        .indian { background-color: #c08b43; }
+        .chef { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+        /* Menu Item Cards */
+        .item-card {
+            background: rgba(255, 255, 255, 0.5);
+            margin: 10px;
+            padding: 12px;
+            border: 1px solid #c8b9a0;
+            border-radius: 5px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .description {
+            font-size: 13px;
+            color: #555;
+            margin: 8px 0;
+        }
+
+        .price-tag { font-weight: bold; font-size: 14px; }
+
+        /* Chef's Recommendation specific style */
+        .chef-card { background: white; border: 1px solid #f5c6cb; margin: 10px; padding: 12px; border-radius: 5px; }
+        .chef-card h4 { color: #b0413e; margin: 0 0 5px 0; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>GastroGrid</h1>
+        <p>Bringing Global Cuisines to Your Doorstep</p>
+    </header>
+
+    <nav>
+        <a href="#" class="active">Italian</a>
+        <a href="#">Mexican</a>
+        <a href="#">Indian</a>
+        <a href="#">Japanese</a>
+    </nav>
+
+    <div class="container">
+        <div class="column">
+            <div class="cuisine-section">
+                <div class="section-title italian">Italian Cuisine</div>
+                <div class="item-card">
+                    <div class="item-header"><span>Margherita Pizza</span> <span>$9.99</span></div>
+                    <p class="description">Classic pizza topped with fresh tomatoes, mozzarella, and basil.</p>
+                    <div class="price-tag">$9.99</div>
+                </div>
+                <div class="item-card">
+                    <div class="item-header"><span>Fettuccine Alfredo</span> <span>$12.99</span></div>
+                    <p class="description">Creamy pasta with rich Alfredo sauce and parmesan.</p>
+                    <div class="price-tag">$12.99</div>
+                </div>
+                <div class="item-card">
+                    <div class="item-header"><span>Bruschetta</span> <span>$6.99</span></div>
+                    <p class="description">Grilled bread topped with diced tomatoes, garlic, and olive oil.</p>
+                    <div class="price-tag">$6.99</div>
+                </div>
+            </div>
+
+            <div class="cuisine-section">
+                <div class="section-title mexican">Mexican Cuisine</div>
+                <div class="item-card">
+                    <div class="item-header"><span>Tacos al Pastor</span> <span>$8.99</span></div>
+                    <p class="description">Soft corn tortillas filled with marinated pork, pineapple, and cilantro.</p>
+                    <div class="price-tag">$8.99</div>
+                </div>
+                <div class="item-card">
+                    <div class="item-header"><span>Chicken Enchiladas</span> <span>$11.99</span></div>
+                    <p class="description">Rolled corn tortillas stuffed with chicken, topped with green enchilada sauce.</p>
+                    <div class="price-tag">$11.99</div>
+                </div>
+            </div>
+        
+	    <div class="cuisine-section">
+                <div class="section-title indian">Indian Cuisine</div>
+                <div class="item-card">
+                    <div class="item-header"><span>Butter Chicken</span> <span>$13.99</span></div>
+                    <p class="description">Creamy tomato-based curry with tender chicken pieces.</p>
+                    <div class="price-tag">$11.99</div>
+                </div>
+                <div class="item-card">
+                    <div class="item-header"><span>Chicken Tikka Masala $14.99</span></div>
+                    <p class="description">Tender chicken cooked in a creamy, spicy tomato sauce.</p>
+                    <div class="price-tag">$14.99</div>
+                </div>
+            </div>
+</div>
+        <div class="column">
+            <div class="chef">
+                <div style="padding: 10px 15px; font-weight: bold;">Chef's Recommendation</div>
+                <div class="chef-card">
+                    <h4>Spicy Tuna Roll</h4>
+                    <p class="description">Spicy tuna with cucumber and avocado in a thinly sliced roll.</p>
+                    <div class="price-tag">$11.99</div>
+                </div>
+                <div class="chef-card">
+                    <h4>Chicken Tikka Masala</h4>
+                    <p class="description">Tender chicken cooked in a creamy, spicy tomato sauce.</p>
+                    <div class="price-tag">$14.99</div>
+                </div>
+            </div>
+
+            <div class="cuisine-section">
+                <div class="section-title indian">Indian Cuisine</div>
+                <div class="item-card">
+                    <div class="item-header"><span>Butter Chicken</span> <span>$13.99</span></div>
+                    <p class="description">Creamy tomato-based curry with tender chicken pieces.</p>
+                    <div class="price-tag">$11.99</div>
+                </div>
+                <div class="item-card">
+                    <div class="item-header"><span>Chicken Tikka Masala $14.99</span></div>
+                    <p class="description">Tender chicken cooked in a creamy, spicy tomato sauce.</p>
+                    <div class="price-tag">$14.99</div>
+                </div>
+            </div>
+
+            <div class="cuisine-section">
+                <div class="section-title indian"></div> <div class="item-card">
+                    <div class="item-header"><span>Palak Paneer</span> <span>$11.99</span></div>
+                    <p class="description">Spinach curry with cubes of paneer cheese.</p>
+                    <div class="price-tag">$11.99</div>
+                </div>
+                <div class="item-card">
+                    <div class="item-header"><span>Samosas</span> <span>$5.99</span></div>
+                    <p class="description">Crispy pastries filled with spiced potatoes and peas.</p>
+                    <div class="price-tag">$8.99</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.main {
+   display: flex;        /* LEFT - RIGHT */
+   gap: 20px;
+   width: 90%;
+   margin: auto;
+}
+
+/* Left & Right Columns */
+.left, .right {
+   flex: 1;
+   display: flex;
+   flex-direction: column;   /* TOP TO BOTTOM */
+   gap: 20px;
+}
+
+/* Cuisine Boxes */
+.box {
+   background-color: #f9f4e8;
+   border: 2px solid #ccc;
+   padding: 15px;
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+
+/* Item */
+.item {
+   border: 1px solid #ccc;
+   padding: 10px;
+   background-color: white;
+}
+
+</style>
+</head>
+<body>
+
+<div class="main">
+
+   <!-- LEFT COLUMN -->
+   <div class="left">
+
+      <div class="box">
+         <h3>Italian Cuisine</h3>
+         <div class="item">Pizza</div>
+         <div class="item">Pasta</div>
+      </div>
+
+      <div class="box">
+         <h3>Mexican Cuisine</h3>
+         <div class="item">Tacos</div>
+         <div class="item">Enchiladas</div>
+      </div>
+
+   </div>
+
+   <!-- RIGHT COLUMN -->
+   <div class="right">
+
+      <div class="box">
+         <h3>Chef Recommendation</h3>
+         <div class="item">Spicy Tuna Roll</div>
+         <div class="item">Tikka Masala</div>
+      </div>
+
+      <div class="box">
+         <h3>Indian Cuisine</h3>
+         <div class="item">Butter Chicken</div>
+         <div class="item">Palak Paneer</div>
+      </div>
+
+   </div>
+
+</div>
+
+</body>
+</html>
+
+<p>
+<label for="tea">Favourite Tea:</label>
+<input list="tea-options" id="tea" name="tea">
+<datalist id="tea-options">
+<option value="Green Tea">Green Tea</option>
+<option value="Black Tea">Black Tea</option>
+<option value="Oolong Tea">Oolong Tea</option>
+<option value="Chamomile Tea">Chamomile Tea</option>
+</datalist>
+</p>

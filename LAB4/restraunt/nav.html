@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Force the body to fill the frame and disable scrolling */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Disables scrollbars completely */
+            background-color: #3d2b1f; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Flexbox container that fills the entire height of the frame */
+        .nav-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly; /* Evenly spaces items from top to bottom */
+            align-items: center;
+            height: 100%; /* Ensures it spans the full frame height */
+            padding: 10px 0;
+            box-sizing: border-box;
+        }
+
+        /* The clickable container for each nav section */
+        .nav-item {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%; /* Width relative to the frame width */
+            max-width: 150px; /* Prevents it from getting too large */
+            transition: transform 0.3s ease;
+        }
+
+        /* The Image: Square and Responsive */
+        .nav-item img {
+            width: 100%;
+            aspect-ratio: 1 / 1; /* Keeps it a perfect square */
+            object-fit: cover;
+            border: 2px solid #e67e22;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        /* The Labels */
+        .nav-label {
+            margin-top: 5px;
+            color: #fdf5e6;
+            font-size: 0.85em; /* Scaled font for smaller frames */
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        /* Interaction */
+        .nav-item:hover {
+            transform: scale(1.05);
+        }
+        .nav-item:hover img {
+            border-color: #ff9f43;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-wrapper">
+
+        <a href="home.html" target="rightFrame" class="nav-item">
+            <img src="homeimg.png" alt="Home">
+            <span class="nav-label">Home</span>
+        </a>
+
+        <a href="menu.html" target="rightFrame" class="nav-item">
+            <img src="menuimg.jpg" alt="Menu">
+            <span class="nav-label">Menu</span>
+        </a>
+
+        <a href="contact.html" target="rightFrame" class="nav-item">
+            <img src="contactimg.jpg" alt="Contact">
+            <span class="nav-label">Contact</span>
+        </a>
+
+    </div>
+<iframe src="https://www.wikipedia.org" width="600" height="400" scrolling=yes allowfullscreen>
+</iframe>
+
+</body>
+</html>

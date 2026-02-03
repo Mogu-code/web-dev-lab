@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Q5 Object</title>
+<style>
+  body { 
+    font-family: sans-serif; 
+    padding: 20px; 
+    color: #333;
+  }
+
+  /* Styling the keys to look like subtle tags */
+  #data p { 
+    display: inline-block;
+    background: #f0f0f0;
+    padding: 8px 15px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    transition: background 0.2s;
+  }
+
+  #data p:hover { 
+    background: #e0e0e0; 
+  }
+
+  /* Highlighting the displayed value */
+  #value { 
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff; /* A simple blue for the result */
+  }
+</style>
+</head>
+<body>
+
+  <div id="data"></div>
+  <p id="value">Click a property above...</p>
+
+<script>
+const user = { Name: "Mokshdaa", Age: 20, Role: "Student" };
+
+for (let key in user) {
+  const p = document.createElement("p");
+  p.innerText = key;
+  p.onclick = () => {
+    document.getElementById("value").innerText = user[key];
+  };
+  document.getElementById("data").appendChild(p);
+}
+</script>
+
+</body>
+</html>

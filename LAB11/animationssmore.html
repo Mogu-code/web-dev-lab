@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CSS Animation Timing Functions Demo (Vertical + Bounded)</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f2f4f8;
+  padding:20px;
+  color:#111;
+}
+
+h1{
+  text-align:center;
+  margin-bottom:20px;
+}
+
+/* Demarcation block */
+.section{
+  max-width:950px;
+  margin:20px auto;
+  padding:18px;
+  border:2px solid #111;
+  background:#fff;
+}
+
+.section h2{
+  margin:0 0 15px;
+  padding:8px;
+  text-align:center;
+  border:2px solid #111;
+  background:#e9eefc;
+}
+
+/* ONE ANIMATION ROW (Vertical stacking) */
+.demo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin:12px 0;
+}
+
+/* label on left */
+.tag{
+  width:140px;
+  font-weight:bold;
+  font-size:14px;
+  border:2px solid #111;
+  padding:8px;
+  text-align:center;
+  background:#f7f7f7;
+}
+
+/* track keeps animation in bounds */
+.track{
+  flex:1;
+  height:46px;
+  border:2px solid #111;
+  background:#fafafa;
+  position:relative;
+  overflow:hidden; /* IMPORTANT: prevents overflow */
+}
+
+/* the animated box */
+.box{
+  width:40px;
+  height:40px;
+  border:2px solid #111;
+  position:absolute;
+  top:50%;
+  transform: translateY(-50%);
+}
+
+/* KEYFRAME (bounded): translateX inside track */
+@keyframes move{
+  from { transform: translate(0, -50%); }
+  to   { transform: translate(760px, -50%); }  /* within track width */
+}
+
+/* ---------- timing functions ---------- */
+.linear { background:#111827; animation: move 2s linear infinite alternate; }
+.ease { background:#2563eb; animation: move 2s ease infinite alternate; }
+.easein { background:#16a34a; animation: move 2s ease-in infinite alternate; }
+.easeout { background:#f97316; animation: move 2s ease-out infinite alternate; }
+.easeinout { background:#7c3aed; animation: move 2s ease-in-out infinite alternate; }
+
+/* ---------- direction ---------- */
+.normal { background:#0f766e; animation: move 2s linear infinite normal; }
+.reverse { background:#9f1239; animation: move 2s linear infinite reverse; }
+.alternate { background:#db2777; animation: move 2s linear infinite alternate; }
+.altrev { background:#ca8a04; animation: move 2s linear infinite alternate-reverse; }
+
+/* ---------- play state ---------- */
+.running { background:#22c55e; animation: move 2s linear infinite alternate; }
+.paused  { background:#6b7280; animation: move 2s linear infinite alternate; animation-play-state: paused; }
+
+/* ---------- duration ---------- */
+.two { background:#ef4444; animation: move 2s linear infinite alternate; }
+.fast { background:#0ea5e9; animation: move 500ms linear infinite alternate; }
+.slow { background:#111827; animation: move 5s linear infinite alternate; }
+
+/* ---------- cubic bezier ---------- */
+.bezier { background:#0891b2; animation: move 2s cubic-bezier(0.68,-0.55,0.27,1.55) infinite alternate; }
+
+/* ---------- steps ---------- */
+.steps { background:#7f1d1d; animation: move 2s steps(5) infinite alternate; }
+.stepsStart { background:#ea580c; animation: move 2s steps(5, start) infinite alternate; }
+.stepsEnd { background:#6d28d9; animation: move 2s steps(5, end) infinite alternate; }
+
+/* responsive: reduce travel distance on smaller screens */
+@media(max-width: 850px){
+  @keyframes move{
+    from { transform: translate(0, -50%); }
+    to   { transform: translate(420px, -50%); }
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>WEB DEV LAB 11 - CSS Animations (Vertical View)</h1>
+
+<!-- ================= TIMING FUNCTION ================= -->
+<div class="section">
+  <h2>1) Animation Timing Functions</h2>
+
+  <div class="demo">
+    <div class="tag">linear</div>
+    <div class="track"><div class="box linear"></div></div>
+  </div>
+
+  <div class="demo">
+    <div class="tag">ease</div>
+    <div class="track"><div class="box ease"></div></div>
+  </div>
+
+  <div class="demo">
+    <div class="tag">ease-in</div>
+    <div class="track"><div class="box easein"></div></div>
+  </div>
+
+  <div class="demo">
+    <div class="tag">ease-out</div>
+    <div class="track"><div class="box easeout"></div></div>
+  </div>
+
+  <div class="demo">
+    <div class="tag">ease-in-out</div>
+    <div class="track"><div class="box easeinout"></div></div>
+  </div>
+</div>
+
+<!-- ================= DIRECTION ================= -->
+<div class="section">
+  <h2>2) Animation Direction</h2>
+
+  <div class="demo">
+    <div class="tag">normal</div>
+    <div class="track"><div class="box normal"></div></div>
+  </div>
+
+  <div class="demo">
+    <div class="tag">reverse</div>
+    <div class="track"><div class="box reverse"></div></div>
+  </div>
+
+  <div class="demo">
+    <div class="tag">alternate</div>
+    <div class="track"><div class="box alternate"></div></div>
+  </div>
+
+  <div class="demo">
+    <div class="tag">alternate-reverse</div>
+    <div class="track"><div class="box altrev"></div></div>
+  </div>
+</div>
+
+<!-- ================= PLAY STATE ================= -->
+<div class="section">
+  <h2>3) Animation Play State</h2>
+
+  <div class="demo">
+    <div class="tag">running</div>
+    <div class="track"><div class="box running"></div></div>
+  </div>
+
+  <div class="demo">
+    <div class="tag">paused</div>
+    <div class="track"><div class="box paused"></div></div>
+  </div>
+</div>
+
+<!-- ================= DURATION ================= -->
+<div class="section">
+  <h2>4) Animation Duration</h2>
+
+  <div class="demo">
+    <div class="tag">2 seconds</div>
+    <div class="track"><div class="box two"></div></div>
+  </div>
+
+  <div class="demo">
+    <div class="tag">500ms (fast)</div>
+    <div class="track"><div class="box fast"></div></div>
+  </div>
+
+  <div class="demo">
+    <div class="tag">5 seconds (slow)</div>
+    <div class="track"><div class="box slow"></div></div>
+  </div>
+</div>
+
+<!-- ================= CUBIC BEZIER ================= -->
+<div class="section">
+  <h2>5) Cubic Bezier Timing Function</h2>
+
+  <div class="demo">
+    <div class="tag">cubic-bezier()</div>
+    <div class="track"><div class="box bezier"></div></div>
+  </div>
+</div>
+
+<!-- ================= STEPS ================= -->
+<div class="section">
+  <h2>6) Steps Timing Function</h2>
+
+  <div class="demo">
+    <div class="tag">steps(5)</div>
+    <div class="track"><div class="box steps"></div></div>
+  </div>
+
+  <div class="demo">
+    <div class="tag">steps(5, start)</div>
+    <div class="track"><div class="box stepsStart"></div></div>
+  </div>
+
+  <div class="demo">
+    <div class="tag">steps(5, end)</div>
+    <div class="track"><div class="box stepsEnd"></div></div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Exercises - Internal JS</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        .section { border-bottom: 2px solid #eee; padding: 20px 0; }
+        .box { width: 50px; height: 50px; display: inline-block; margin: 5px; border: 1px solid #000; }
+        .highlight { border: 3px solid red; }
+        .purchased { text-decoration: line-through; color: gray; }
+        .thumbnail { width: 100px; transition: 0.3s; margin: 10px; }
+        .focused-field { background-color: #e0f7fa; border: 2px solid #00acc1; }
+    </style>
+</head>
+<body>
+
+    <h1>JavaScript Exercises (1-18)</h1>
+
+    <div id="q1" class="section"><h3>Q1: 10 Buttons</h3></div>
+    <div id="q2" class="section"><h3>Q2: While Loop Input</h3><button onclick="startPrompt()">Start Prompting</button></div>
+    <div id="q3" class="section"><h3>Q3: Do...While 1-5</h3></div>
+    <div id="q4" class="section"><h3>Q4: for...of Colors</h3></div>
+    <div id="q5" class="section"><h3>Q5: for...in Object</h3></div>
+    <div id="q6" class="section"><h3>Q6: Shopping List</h3><ul id="shop-list"></ul></div>
+    <div id="q7" class="section"><h3>Q7: Change BG Buttons</h3></div>
+    <div id="q8" class="section"><h3>Q8: Char Counter</h3><input type="text" id="char-input"> <span id="count-msg"></span></div>
+    <div id="q9" class="section"><h3>Q9: Enter Key</h3><p>Press Enter on your keyboard.</p></div>
+    <div id="q10" class="section"><h3>Q10: Image Hover</h3></div>
+    <div id="q11" class="section"><h3>Q11: Dropdown Loop</h3></div>
+    <div id="q12" class="section"><h3>Q12: Form Validation</h3>
+        <form id="val-form">
+            <input type="text" id="form-field" placeholder="Don't leave empty">
+            <button type="submit">Submit</button>
+            <p id="error-msg" style="color:red;"></p>
+        </form>
+    </div>
+    <div id="q13" class="section"><h3>Q13: Window Onload List</h3><ul id="onload-ul"></ul></div>
+    <div id="q14" class="section"><h3>Q14: Focus/Blur Highlight</h3></div>
+    <div id="q15" class="section"><h3>Q15: Event Delegation</h3><div id="parent-div" style="background:#f9f9f9; padding:10px;"></div></div>
+    <div id="q16" class="section"><h3>Q16: setTimeout Loop</h3><p>Check the Browser Console (F12) for results.</p></div>
+    <div id="q17" class="section"><h3>Q17: Arrow Key Nav</h3><div id="nav-container"></div></div>
+    <div id="q18" class="section"><h3>Q18: Real-time Validate</h3></div>
+
+    <script>
+        // Q1: For loop buttons
+        const q1 = document.getElementById('q1');
+        for (let i = 1; i <= 10; i++) {
+            let btn = document.createElement('button');
+            btn.innerText = "Button " + i;
+            btn.onclick = () => alert("Button " + i);
+            q1.appendChild(btn);
+        }
+
+        // Q2: While loop prompt
+        function startPrompt() {
+            let text = "";
+            while (text !== "stop") {
+                text = prompt("Type something (or 'stop' to finish):");
+                if (text && text !== "stop") {
+                    document.getElementById('q2').innerHTML += `<p>${text}</p>`;
+                }
+            }
+        }
+
+        // Q3: Do...While 1-5
+        let count3 = 1;
+        do {
+            let span = document.createElement('span');
+            span.innerText = count3 + " ";
+            span.style.fontSize = "24px";
+            span.onclick = function() { this.style.color = "red"; };
+            document.getElementById('q3').appendChild(span);
+            count3++;
+        } while (count3 <= 5);
+
+        // Q4: for...of colors
+        const colors = ['red', 'green', 'blue', 'orange'];
+        for (const c of colors) {
+            let box = document.createElement('div');
+            box.className = 'box';
+            box.style.backgroundColor = c;
+            box.onmouseover = () => box.innerText = c;
+            box.onmouseout = () => box.innerText = "";
+            document.getElementById('q4').appendChild(box);
+        }
+
+        // Q5: for...in object
+        const user = { name: "Bob", age: 30, role: "Admin" };
+        for (const key in user) {
+            let p = document.createElement('p');
+            p.innerText = key;
+            p.style.cursor = "pointer";
+            p.onclick = () => p.innerText = `${key}: ${user[key]}`;
+            document.getElementById('q5').appendChild(p);
+        }
+
+        // Q6: forEach shopping list
+        const items = ["Bread", "Milk", "Eggs"];
+        items.forEach(item => {
+            let li = document.createElement('li');
+            li.innerText = item;
+            li.onclick = () => li.classList.toggle('purchased');
+            document.getElementById('shop-list').appendChild(li);
+        });
+
+        // Q7: Loop bg color buttons
+        for (let i = 0; i < 3; i++) {
+            let btn = document.createElement('button');
+            btn.innerText = "Random BG";
+            btn.onclick = () => document.body.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 80%)`;
+            document.getElementById('q7').appendChild(btn);
+        }
+
+        // Q8: Char counter (Keyup)
+        document.getElementById('char-input').onkeyup = (e) => {
+            document.getElementById('count-msg').innerText = "Chars: " + e.target.value.length;
+        };
+
+        // Q9: Enter key detection
+        window.onkeydown = (e) => {
+            if (e.key === "Enter") alert("Enter pressed");
+        };
+
+        // Q10: Image hover enlarge
+        for (let i = 0; i < 2; i++) {
+            let img = document.createElement('img');
+            img.src = "https://picsum.photos/100";
+            img.className = "thumbnail";
+            img.onmouseover = () => img.style.transform = "scale(1.5)";
+            img.onmouseout = () => img.style.transform = "scale(1)";
+            document.getElementById('q10').appendChild(img);
+        }
+
+        // Q11: Dropdown loop
+        let sel = document.createElement('select');
+        for (let i = 1; i <= 5; i++) {
+            let opt = document.createElement('option');
+            opt.value = "Val " + i;
+            opt.innerText = "Option " + i;
+            sel.appendChild(opt);
+        }
+        sel.onchange = (e) => alert("Selected: " + e.target.value);
+        document.getElementById('q11').appendChild(sel);
+
+        // Q12: Form prevent empty
+        document.getElementById('val-form').onsubmit = (e) => {
+            if (document.getElementById('form-field').value.trim() === "") {
+                e.preventDefault();
+                document.getElementById('error-msg').innerText = "Cannot be empty!";
+            }
+        };
+
+        // Q13: Window Onload
+        window.onload = () => {
+            const list = ["Item A", "Item B"];
+            list.forEach(i => {
+                let li = document.createElement('li');
+                li.innerText = i;
+                document.getElementById('onload-ul').appendChild(li);
+            });
+        };
+
+        // Q14: Focus and Blur
+        for (let i = 0; i < 2; i++) {
+            let inp = document.createElement('input');
+            inp.onfocus = () => inp.classList.add('focused-field');
+            inp.onblur = () => inp.classList.remove('focused-field');
+            document.getElementById('q14').appendChild(inp);
+        }
+
+        // Q15: Event Delegation
+        const parent = document.getElementById('parent-div');
+        for (let i = 1; i <= 3; i++) {
+            let b = document.createElement('button');
+            b.innerText = "Child " + i;
+            parent.appendChild(b);
+        }
+        parent.onclick = (e) => {
+            if (e.target.tagName === 'BUTTON') alert("Delegated Click: " + e.target.innerText);
+        };
+
+        // Q16: setTimeout Loop
+        for (let i = 1; i <= 10; i++) {
+            setTimeout(() => {
+                console.log("Timer: " + i);
+            }, i * 1000);
+        }
+
+        // Q17: Arrow Key Nav
+        const menu = ["Home", "Settings", "Profile"];
+        let currentPos = 0;
+        menu.forEach((item, index) => {
+            let d = document.createElement('span');
+            d.innerText = item + " | ";
+            d.id = "menu-" + index;
+            document.getElementById('nav-container').appendChild(d);
+        });
+        window.addEventListener('keydown', (e) => {
+            if (e.key === "ArrowRight") currentPos = (currentPos + 1) % menu.length;
+            if (e.key === "ArrowLeft") currentPos = (currentPos - 1 + menu.length) % menu.length;
+            document.querySelectorAll('#nav-container span').forEach(s => s.style.color = "black");
+            document.getElementById("menu-" + currentPos).style.color = "blue";
+        });
+
+        // Q18: Real-time validation
+        for (let i = 0; i < 1; i++) {
+            let inp = document.createElement('input');
+            let hint = document.createElement('div');
+            inp.onkeyup = () => {
+                hint.innerText = inp.value.length < 5 ? "Too short!" : "Looks good!";
+                hint.style.color = inp.value.length < 5 ? "red" : "green";
+            };
+            document.getElementById('q18').append(inp, hint);
+        }
+    </script>
+</body>
+</html>

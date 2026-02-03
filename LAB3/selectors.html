@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS Selectors Demo</title>
+
+    <style>
+        /* TAG SELECTOR */
+        p {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        /* CLASS SELECTOR */
+        .highlight {
+            background-color: lightyellow;
+            padding: 0.5em;
+        }
+
+        /* ID SELECTOR */
+        #mainTitle {
+            color: darkblue;
+            text-align: center;
+        }
+
+        /* PARENT–CHILD SELECTOR */
+        header a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5em;
+            display: inline-block;
+        }
+
+        header {
+            background-color: teal;
+            padding: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1 id="mainTitle">CSS Selectors Example</h1>
+
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </header>
+
+    <p>This paragraph uses a tag selector.</p>
+
+    <p class="highlight">
+        This paragraph uses a class selector.
+    </p>
+
+</body>
+</html>

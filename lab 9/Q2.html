@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Q2 While Loop</title>
+<style>
+body { font-family: Arial; }
+</style>
+</head>
+<body>
+
+<h3>Enter text (type "stop" to end)</h3>
+<div id="result"></div>
+
+<script>
+let input;
+while (true) {
+  input = prompt("Enter text (type stop to end)");
+  if (input === "stop") break;
+
+  const p = document.createElement("p");
+  p.innerText = input;
+  document.getElementById("result").appendChild(p);
+}
+</script>
+
+</body>
+</html>

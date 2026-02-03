@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Q1 Buttons</title>
+<style>
+body { font-family: Arial; }
+button { margin: 4px; padding: 6px 10px; }
+</style>
+</head>
+<body>
+
+<h3>Buttons 1–10</h3>
+<div id="buttons"></div>
+<p id="output"></p>
+
+<script>
+const container = document.getElementById("buttons");
+
+for (let i = 1; i <= 10; i++) {
+  const btn = document.createElement("button");
+  btn.innerText = "Button " + i;
+  btn.onclick = () => {
+    document.getElementById("output").innerText = "Clicked: " + i;
+  };
+  container.appendChild(btn);
+}
+</script>
+
+</body>
+</html>

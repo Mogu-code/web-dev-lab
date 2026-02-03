@@ -1,0 +1,94 @@
+html {
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #fff1c1;   /* cream */
+    color: #111;
+}
+
+/* HEADER */
+header {
+    background-color: #000;
+    color: white;
+    padding: 2rem;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header span {
+    color: #ffb3b3;  /* soft peach */
+}
+
+.tagline {
+    font-size: 1.1em;
+    margin-top: 0.5rem;
+    color: #ddd;
+}
+
+/* HERO SECTION */
+.image-area {
+    background-color: #9cab5d;  /* olive green */
+    padding: 3rem 2rem;
+}
+
+.hero-text {
+    max-width: 500px;
+}
+
+.hero-text h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.hero-text button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.4rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* MAIN CONTENT */
+main {
+    padding: 2rem;
+}
+
+.card {
+    background-color: #ffe6a7; /* soft cream */
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+/* OFFER */
+.offer {
+    background-color: #ffb3b3;  /* peach */
+    text-align: center;
+    padding: 1.3rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+/* FOOTER */
+footer {
+    background-color: #000;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+}

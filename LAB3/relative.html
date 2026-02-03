@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Relative Units Demo</title>
+
+    <style>
+        /* Root font size */
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Parent container */
+        .parent {
+            width: 80%;              /* % → relative to screen */
+            font-size: 20px;         /* parent font size */
+            background-color: #e3f2fd;
+            padding: 1em;
+            margin: 2rem auto;
+        }
+
+        /* em → relative to parent font size */
+        .em-box {
+            font-size: 1.5em;        /* 1.5 × 20px = 30px */
+            background-color: #bbdefb;
+            padding: 1em;
+        }
+
+        /* rem → relative to root font size */
+        .rem-box {
+            font-size: 1.5rem;       /* 1.5 × 16px = 24px */
+            background-color: #90caf9;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        /* vw & vh */
+        .viewport-box {
+            width: 50vw;             /* 50% of screen width */
+            height: 20vh;            /* 20% of screen height */
+            background-color: #64b5f6;
+            margin-top: 1rem;
+            text-align: center;
+            line-height: 20vh;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="parent">
+        Parent Container (font-size: 20px)
+
+        <div class="em-box">
+            This uses em (relative to parent)
+        </div>
+
+        <div class="rem-box">
+            This uses rem (relative to root)
+        </div>
+
+        <div class="viewport-box">
+            vw & vh
+        </div>
+    </div>
+
+</body>
+</html>

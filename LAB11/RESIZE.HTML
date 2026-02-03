@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSS UI - Resize</title>
+  <style>
+    body{
+      font-family: Arial;
+      background:#f3fff9;
+      padding:20px;
+    }
+    h2{text-align:center;}
+    .box{
+      width:320px;
+      height:130px;
+      margin:30px auto;
+      padding:12px;
+      border:2px solid #009688;
+      border-radius:0px;
+      background:white;
+      overflow:auto;
+      resize: both;     /* try: horizontal / vertical / none / both */
+    }
+    .note{
+      max-width:650px;
+      margin:auto;
+      padding:12px;
+      border-left:5px solid #009688;
+      background:#eafff8;
+      border-radius:0px;
+    }
+  </style>
+</head>
+<body>
+  <h2>CSS User Interface - Resize</h2>
+
+  <div class="box">
+    Try resizing this box from corner.<br><br>
+    Resize property allows user to resize an element horizontally, vertically, both or none.
+    Here resize is set to <b>both</b>.
+  </div>
+
+  <div class="note">
+    ✅ Change CSS:<br>
+    resize: horizontal;<br>
+    resize: vertical;<br>
+    resize: both;<br>
+    resize: none;
+  </div>
+</body>
+</html>

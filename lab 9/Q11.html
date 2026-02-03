@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Q11 Dropdown</title>
+</head>
+<body>
+
+<select id="select"></select>
+<p id="out"></p>
+
+<script>
+const options = ["Apple", "Banana", "Orange"];
+const sel = document.getElementById("select");
+
+for (let o of options) {
+  const opt = document.createElement("option");
+  opt.text = o;
+  sel.add(opt);
+}
+
+sel.onchange = () => {
+  document.getElementById("out").innerText = sel.value;
+};
+</script>
+
+</body>
+</html>

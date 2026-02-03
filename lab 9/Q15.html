@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Q15 Event Delegation</title>
+</head>
+<body>
+
+<h3>Q15: Click List Item</h3>
+<ul id="parentList"></ul>
+<p id="result"></p>
+
+<script>
+const items = ["HTML", "CSS", "JavaScript", "Python"];
+
+const ul = document.getElementById("parentList");
+
+for (let i = 0; i < items.length; i++) {
+    const li = document.createElement("li");
+    li.innerText = items[i];
+    ul.appendChild(li);
+}
+
+ul.onclick = function (e) {
+    document.getElementById("result").innerText =
+        "You clicked: " + e.target.innerText;
+};
+</script>
+
+</body>
+</html>

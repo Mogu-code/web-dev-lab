@@ -1,0 +1,40 @@
+<html>
+<head>
+<title>Dice Roller</title>
+
+<script>
+function rollOneDice() {
+    var dice = Math.floor(Math.random() * 6) + 1;
+
+    document.getElementById("diceImage").src =
+        "https://upload.wikimedia.org/wikipedia/commons/" +
+        (dice == 1 ? "1/1b/Dice-1-b.svg" :
+         dice == 2 ? "5/5f/Dice-2-b.svg" :
+         dice == 3 ? "b/b1/Dice-3-b.svg" :
+         dice == 4 ? "f/fd/Dice-4-b.svg" :
+         dice == 5 ? "0/08/Dice-5-b.svg" :
+                     "2/26/Dice-6-b.svg");
+
+    document.getElementById("oneDiceResult").innerHTML =
+        "Dice Value: " + dice;
+}
+</script>
+
+</head>
+
+<body style="text-align:center; font-family:Arial;">
+
+<h2>Roll a Dice</h2>
+
+<img id="diceImage"
+     src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Dice-1-b.svg"
+     width="120"><br><br>
+
+<button onclick="rollOneDice()" style="padding:10px 20px;">
+    Roll Dice
+</button>
+
+<p id="oneDiceResult"></p>
+
+</body>
+</html>

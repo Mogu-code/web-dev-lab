@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lab 11 - Pacman CSS Animation</title>
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#f2f4f8;
+      padding:20px;
+      color:#111;
+      text-align:center;
+    }
+
+    h1{
+      margin-bottom:6px;
+    }
+
+    .panel{
+      max-width:900px;
+      margin:10px auto 18px;
+      padding:12px;
+      border:2px solid #111;
+      background:#fff;
+    }
+
+    button{
+      padding:10px 14px;
+      margin:6px;
+      border:2px solid #111;
+      background:#e9eefc;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    /* ====== GAME ARENA ====== */
+    .arena{
+      max-width:900px;
+      height:220px;
+      margin:0 auto;
+      border:3px solid #111;
+      background:#0b1220;
+      position:relative;
+      overflow:hidden; /* IMPORTANT: nothing goes out of bounds */
+    }
+
+    /* ===== DOTTED PATH ===== */
+    .dots{
+      position:absolute;
+      top:105px;
+      left:0;
+      width:200%;
+      height:10px;
+      display:flex;
+      gap:22px;
+      align-items:center;
+      animation: dotsMove 3s linear infinite;
+    }
+
+    .dot{
+      width:10px;
+      height:10px;
+      background:#f8fafc;
+      border-radius:50%;
+    }
+
+    @keyframes dotsMove{
+      from{ transform:translateX(0); }
+      to{ transform:translateX(-50%); }
+    }
+
+    /* ===== PACMAN ===== */
+    .pacman{
+      position:absolute;
+      top:70px;
+      left:60px;
+      width:80px;
+      height:80px;
+      animation: pacMove 3s linear infinite;
+    }
+
+    /* Pac body: we create mouth using pseudo elements */
+    .pacman::before, .pacman::after{
+      content:"";
+      position:absolute;
+      width:80px;
+      height:80px;
+      background:#facc15;
+      border:2px solid #111;
+      border-radius:50%;
+    }
+
+    /* Top mouth */
+    .pacman::before{
+      clip-path: polygon(50% 50%, 100% 0, 100% 100%);
+      animation: mouthTop 0.28s ease-in-out infinite alternate;
+    }
+
+    /* Bottom mouth */
+    .pacman::after{
+      clip-path: polygon(50% 50%, 100% 0, 100% 100%);
+      transform:rotate(180deg);
+      animation: mouthBottom 0.28s ease-in-out infinite alternate;
+    }
+
+    @keyframes mouthTop{
+      from{ transform:rotate(10deg); }
+      to{ transform:rotate(45deg); }
+    }
+    @keyframes mouthBottom{
+      from{ transform:rotate(170deg); }
+      to{ transform:rotate(135deg); }
+    }
+
+    @keyframes pacMove{
+      0%{ transform:translateX(0); }
+      100%{ transform:translateX(640px); }
+    }
+
+    /* ===== GHOST ===== */
+    .ghost{
+      position:absolute;
+      top:70px;
+      left:-90px;
+      width:70px;
+      height:80px;
+      background:#ef4444;
+      border:2px solid #111;
+      animation: ghostMove 3s ease-in-out infinite;
+    }
+
+    .ghost::before{
+      content:"";
+      position:absolute;
+      width:100%;
+      height:25px;
+      background:#ef4444;
+      border-bottom:2px solid #111;
+      border-radius:0 0 0 0;
+      top:55px;
+      left:0;
+      clip-path: polygon(0 0, 15% 100%, 30% 0, 45% 100%, 60% 0, 75% 100%, 90% 0, 100% 100%, 100% 0);
+    }
+
+    .eyes{
+      position:absolute;
+      top:18px;
+      left:12px;
+      display:flex;
+      gap:10px;
+    }
+
+    .eye{
+      width:16px;
+      height:20px;
+      background:#fff;
+      border:2px solid #111;
+      position:relative;
+    }
+    .eye::after{
+      content:"";
+      width:8px;
+      height:8px;
+      background:#111;
+      position:absolute;
+      top:5px;
+      left:4px;
+    }
+
+    @keyframes ghostMove{
+      0%{ transform:translateX(0); }
+      100%{ transform:translateX(980px); }
+    }
+
+    /* ===== PLAY/PAUSE CONTROL ===== */
+    .paused *{
+      animation-play-state: paused !important; /* uses animation-play-state parameter */
+    }
+
+    /* responsive: adjust movement on smaller screens */
+    @media(max-width: 900px){
+      @keyframes pacMove{
+        0%{ transform:translateX(0); }
+        100%{ transform:translateX(420px); }
+      }
+      @keyframes ghostMove{
+        0%{ transform:translateX(0); }
+        100%{ transform:translateX(720px); }
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Pac-Man CSS Animation 🎮</h1>
+  <div class="panel">
+    <b>Lab 11:</b> CSS Animations using keyframes + timing-function + duration + iteration-count + play-state etc.
+    <br>
+    <button onclick="playGame()">Play</button>
+    <button onclick="pauseGame()">Pause</button>
+  </div>
+
+  <div class="arena" id="arena">
+    <!-- dots -->
+    <div class="dots">
+      <!-- repeat dots -->
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+
+    <!-- pacman -->
+    <div class="pacman"></div>
+
+    <!-- ghost -->
+    <div class="ghost">
+      <div class="eyes">
+        <div class="eye"></div>
+        <div class="eye"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const arena = document.getElementById("arena");
+
+    function pauseGame(){
+      arena.classList.add("paused");
+    }
+    function playGame(){
+      arena.classList.remove("paused");
+    }
+  </script>
+</body>
+</html>

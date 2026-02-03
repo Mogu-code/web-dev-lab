@@ -1,0 +1,264 @@
+
+
+
+<form action= submit.php method=get autocomplete=on >
+<label
+<input type=text name=username required>hi
+<label for=pwd>pwd</label>
+<input type=email name=pwd>
+<input type=number>
+<input type=tel>
+<input type=search>
+<input type=url>
+<input type="radio" name="gender" value="M"> Male
+<input type="radio" name="gender" value="F"> Female
+<input type="radio" name="bt" value="F"> Female
+<input type="radio" name="td" value="F"> Female
+<input type="checkbox" name="hobby" value="music"> Music<br>
+<input type="color" name="col" value="music">
+<input type="range" name="hobby" value="music"><br>
+<input type="file" name="hobby" value="music"><br>
+
+<input type="time" name="hobby" value="music"><br>
+
+<input type="week" name="hobby" value="music"><br>
+<input type="button" name="hobby" value="button"><br>
+<input type="submit" name="hobby" value="submit"><br>
+<input type="reset" name="hobby" value="reset"><br>
+<input type="image" name="hobby" value="button"><br>
+
+<textarea name="msg" rows="4" cols="30"></textarea><br>
+<select name="city" size=2>
+    <option value="c1">Chennai</option>
+    <option value="c2">Delhi</option>
+<option value="c2">mom</option>
+</select>
+<fieldset>
+    <legend>Personal Info</legend>
+    <input type="text">
+</fieldset>
+
+<button type="submit">Send</button>
+
+
+
+</form>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Forms Demo</title>
+</head>
+<body>
+
+<h2>Complete HTML Forms Demonstration</h2>
+
+<form 
+    action= https://httpbin.org/get
+    method="get" 
+    name="myform" 
+    id="f1"
+    target="_blank"
+    autocomplete="on"
+    enctype="multipart/form-data">
+
+<fieldset>
+<legend>Basic Information</legend>
+
+<label for="name">Name:</label>
+<input type="text" id="name" name="name" 
+       placeholder="Enter your name" 
+       maxlength="20" 
+       required autofocus>
+<br><br>
+
+<label for= pass>Password:</label>
+<input type="password" name="pass" id=pass required autofocus>
+<br><br>
+
+<label>Email:</label>
+<input type="email" name="email">
+<br><br>
+
+<label>Phone:</label>
+<input type="tel" name="phone" pattern="[0-9]{10}" placeholder="10 digit number">
+<br><br>
+
+<label>Age:</label>
+<input type="number" name="age" min="1" max="100" step="1">
+<br><br>
+
+<label>Website:</label>
+<input type="url" name="site">
+<br><br>
+
+<label>Search:</label>
+<input type="search" name="q">
+<br><br>
+
+</fieldset>
+
+<fieldset>
+<legend>Selection Controls</legend>
+
+<label>Gender:</label>
+<input type="radio" name="gender" value="M" checked> Male
+<input type="radio" name="gender" value="F"> Female
+<br><br>
+
+<label>Hobbies:</label>
+<input type="checkbox" name="hobby1" checked> Music
+<input type="checkbox" name="hobby2"> Sports
+<input type="checkbox" name="hobby3"> Reading
+<br><br>
+
+<label>City:</label>
+<select name="city">
+    <option value="">--Select--</option>
+    <option value="c1" selected>Chennai</option>
+    <option value="c2">Delhi</option>
+    <option value="c3">Mumbai</option>
+</select>
+<br><br>
+
+<label>Languages Known:</label>
+<select name="lang" multiple size="3">
+    <option>English</option>
+    <option>Hindi</option>
+    <option>Tamil</option>
+</select>
+<br><br>
+
+</fieldset>
+
+<fieldset>
+<legend>Date, Time and Special Inputs</legend>
+
+<label>Date of Birth:</label>
+<input type="date" name="dob">
+<br><br>
+
+<label>Time:</label>
+<input type="time" name="time">
+<br><br>
+
+<label>Month:</label>
+<input type="month" name="month">
+<br><br>
+
+<label>Week:</label>
+<input type="week" name="week">
+<br><br>
+
+<label>Favorite Color:</label>
+<input type="color" name="color">
+<br><br>
+
+<label>Experience Level:</label>
+<input type="range" name="exp" min="0" max="10">
+<br><br>
+
+<label>Upload Resume:</label>
+<input type="file" name="resume">
+<br><br>
+
+</fieldset>
+
+<fieldset>
+<legend>Textarea and Special Fields</legend>
+
+<label>Address:</label><br>
+<textarea name="address" rows="4" cols="40" placeholder="Enter address"></textarea>
+<br><br>
+
+<label>Readonly Field:</label>
+<input type="text" value="Cannot edit" readonly>
+<br><br>
+
+<label>Disabled Field:</label>
+<input type="text" value="Disabled" disabled>
+<br><br>
+
+<input type="hidden" name="userid" value="12345">
+
+</fieldset>
+
+<fieldset>
+<legend>Buttons</legend>
+
+<input type="submit" value="Submit Form">
+<input type="reset" value="Clear Form">
+<button type="button">Normal Button</button>
+
+</fieldset>
+
+</form>
+
+</body>
+</html>
+
+<head>
+<style>
+#radiusrounding{
+width: 200px;
+height: 100px;
+border-radius: 10px 20px;
+border: 2px solid black;
+margin: 10;
+text-align: center;
+text-decoration: underline;
+text-transform:uppercase;
+padding: 10
+}
+
+.flating{
+width:20px;
+height: 20px;
+float:none;
+}
+img:hover{
+opacity:0.5;
+}
+.contain > div {
+   color: red;
+}
+.flex-cont{
+display:flex;
+background-color:green;
+margin:10;
+padding:10;
+}
+.flex-cont>div{
+background-color:yellow;
+margin:20;
+padding:10;
+}
+body{
+background-image:url(juice.jpg);
+background-repeat:no-repeat;
+background-attachment:fixed;
+background-position:right bottom;
+}
+</style>
+
+
+<body>
+<div id=radiusrounding> hello this is something</div>
+<img src=juice.jpg class=flating >
+<p> hi</p>
+<div class="contain">
+    <div>A</div>
+    <div>B</div>
+    <section>
+        <div>C</div>
+    </section>
+</div>
+<div class=flex-cont>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+</div>
+</body>
+
+

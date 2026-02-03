@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Q10 Images</title>
+<style>
+img { width: 100px; margin: 5px; transition: 0.2s; }
+</style>
+</head>
+<body>
+
+<script>
+for (let i = 1; i <= 3; i++) {
+  const img = document.createElement("img");
+  img.src = "C:\Users\MOKSHDAA\Desktop\Webdev\lab7\button_on.jpg";
+  img.onmouseover = () => img.style.width = "140px";
+  img.onmouseout = () => img.style.width = "100px";
+  document.body.appendChild(img);
+}
+</script>
+
+</body>
+</html>

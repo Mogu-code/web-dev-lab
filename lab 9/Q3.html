@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Q3 Do While</title>
+<style>
+span { margin-right: 10px; cursor: pointer; }
+.highlight { font-weight: bold; text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<h3>Click a number</h3>
+<div id="nums"></div>
+
+<script>
+let i = 1;
+do {
+  const s = document.createElement("span");
+  s.innerText = i;
+  s.onclick = () => {
+    document.querySelectorAll("span").forEach(n => n.classList.remove("highlight"));
+    s.classList.add("highlight");
+  };
+  document.getElementById("nums").appendChild(s);
+  i++;
+} while (i <= 5);
+</script>
+
+</body>
+</html>

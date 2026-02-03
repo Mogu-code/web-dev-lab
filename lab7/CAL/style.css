@@ -1,0 +1,84 @@
+/* Custom Monospace font for a technical feel */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+body {
+    font-family: 'Space Mono', monospace;
+    background-color: #101060; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.calculator {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 4px solid #000000;
+    /* Hard, sharp shadow instead of soft blur */
+    box-shadow: 10px 10px 0px #000000;
+}
+
+#display {
+    width: 100%;
+    height: 60px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 4px solid #000000;
+    background-color: #000000;
+    color: #00ff41; /* "Matrix" green for a retro-tech look */
+    box-sizing: border-box;
+    text-align: right;
+    /* Remove default focus ring */
+    outline: none;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 70px);
+    gap: 12px;
+}
+
+button {
+    height: 70px;
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    border: 3px solid #000000;
+    background-color: #ffffff;
+    cursor: pointer;
+    position: relative;
+    /* Hard shadow for the button */
+    box-shadow: 4px 4px 0px #000000;
+    transition: all 0.05s;
+}
+
+/* Tactile "Mechanical" Click Effect */
+button:hover {
+    background-color: #f0f0f0;
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0px #000000;
+}
+
+button:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px 0px #000000;
+}
+
+/* Industrial Operator Colors */
+.operator {
+    background-color: #ff5f1f; /* Safety Orange */
+    color: white;
+}
+
+.operator:hover {
+    background-color: #e64a19;
+}
+
+/* Specific styling for the Equals/Submit action if you use it */
+button:last-child {
+    background-color: #ff5f1f; /* Changes it to the same orange as the others */
+    color: #ffffff;
+}

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal Registration</title>
+
+    <style>
+        :root {
+            --accent: #2d6a4f; /* Deep Forest Green */
+            --bg: #1a1a1a;    /* Charcoal */
+            --surface: #ffffff;
+            --border: #000000;
+            --error: #bc4749;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace; /* More technical feel */
+            background-color: var(--bg);
+            color: var(--border);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: var(--surface);
+            border: 4px solid var(--border);
+            padding: 40px;
+            /* Box shadow for a "pop-out" effect without rounding */
+            box-shadow: 12px 12px 0px var(--accent);
+        }
+
+        h2 {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 4px solid var(--border);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .full-width { grid-column: span 2; }
+
+        .form-group { margin-bottom: 10px; }
+
+        label {
+            display: block;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 0 !important; /* Forces sharp corners */
+            font-family: inherit;
+            box-sizing: border-box;
+            background: #f9f9f9;
+        }
+
+        input:focus {
+            background: #fff;
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 4px 4px 0px var(--accent);
+        }
+
+        .radio-group {
+            padding: 10px 0;
+        }
+
+        .error {
+            color: var(--error);
+            font-size: 11px;
+            font-weight: bold;
+            display: block;
+            margin-top: 5px;
+            min-height: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent);
+            color: white;
+            border: 2px solid var(--border);
+            border-radius: 0;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 16px;
+            transition: transform 0.1s;
+        }
+
+        button:active {
+            transform: translate(2px, 2px);
+        }
+
+        button:hover {
+            background: #1b4332;
+        }
+
+        @media (max-width: 500px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+        }
+    </style>
+
+    <script>
+        function clearErrors() {
+            var errors = document.getElementsByClassName("error");
+            for (var i = 0; i < errors.length; i++) { errors[i].innerHTML = ""; }
+        }
+
+        function validateForm() {
+            clearErrors();
+            var valid = true;
+
+            const getVal = (id) => document.getElementById(id).value.trim();
+            const setErr = (id, msg) => { document.getElementById(id).innerHTML = msg; valid = false; };
+
+            // Constraints
+            const name = getVal("name");
+            const username = getVal("username");
+            const phone = getVal("phone");
+            const password = document.getElementById("password").value;
+            const age = getVal("age");
+            const zip = getVal("zip");
+
+            // 1. Name: No special chars, 3-50 length
+            if (!/^[A-Za-z ]{3,50}$/.test(name)) setErr("nameError", "USE 3-50 ALPHABETS ONLY");
+
+            // 2. Username: No spaces, min 5 chars
+            if (username.length < 5 || /\s/.test(username)) setErr("usernameError", "MIN 5 CHARS, NO SPACES ALLOWED");
+
+            // 3. Phone: Starts with 7-9, 10 digits
+            if (!/^[789][0-9]{9}$/.test(phone)) setErr("phoneError", "INVALID 10-DIGIT MOBILE");
+
+            // 4. Password: Special char, number, Uppercase, min 8
+            if (!/^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[A-Z]).{8,}$/.test(password)) {
+                setErr("passwordError", "NEED 8+ CHARS, 1 UPPER, 1 SPECIAL, 1 NUM");
+            }
+
+            // 5. Age: 18 to 30
+            if (age < 18 || age > 30) setErr("ageError", "AGE MUST BE 18-30");
+
+            // 6. Zip Code: Exactly 6 digits
+            if (!/^[0-9]{6}$/.test(zip)) setErr("zipError", "ZIP MUST BE EXACTLY 6 DIGITS");
+
+            if (!document.querySelector('input[name="gender"]:checked')) setErr("genderError", "SELECT GENDER");
+            if (!document.getElementById("terms").checked) setErr("termsError", "ACCEPTANCE REQUIRED");
+
+            if(valid) alert("SYSTEM: REGISTRATION DATA VALIDATED");
+            return valid;
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Student_Registration_v2</h2>
+
+    <form onsubmit="return validateForm()">
+        <div class="form-grid">
+            <div class="form-group full-width">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="E.G. ALAN TURING">
+                <span class="error" id="nameError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Portal Username</label>
+                <input type="text" id="username" placeholder="user_01">
+                <span class="error" id="usernameError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Mobile Phone</label>
+                <input type="text" id="phone" placeholder="9876543210">
+                <span class="error" id="phoneError"></span>
+            </div>
+
+            <div class="form-group full-width">
+                <label for="password">System Password</label>
+                <input type="password" id="password" placeholder="********">
+                <span class="error" id="passwordError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age">
+                <span class="error" id="ageError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="zip">Zip Code</label>
+                <input type="text" id="zip" placeholder="000000">
+                <span class="error" id="zipError"></span>
+            </div>
+
+            <div class="form-group full-width">
+                <label>Gender Selection</label>
+                <div class="radio-group">
+                    <input type="radio" name="gender" id="m" style="width:auto"> <label style="display:inline" for="m">MALE</label>
+                    <input type="radio" name="gender" id="f" style="width:auto; margin-left:20px"> <label style="display:inline" for="f">FEMALE</label>
+                </div>
+                <span class="error" id="genderError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="branch">Academic Branch</label>
+                <select id="branch">
+                    <option value="">SELECT</option>
+                    <option>CS</option>
+                    <option>MECHANICAL</option>
+                    <option>ELECTRICAL</option>
+                </select>
+                <span class="error" id="branchError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="course">Course Level</label>
+                <select id="course">
+                    <option value="">SELECT</option>
+                    <option>UG</option>
+                    <option>PG</option>
+                </select>
+                <span class="error" id="courseError"></span>
+            </div>
+        </div>
+
+        <div class="form-group" style="margin-top:20px">
+            <input type="checkbox" id="terms" style="width:auto"> 
+            <label style="display:inline" for="terms">I AGREE TO ALL SYSTEM TERMS</label>
+            <span class="error" id="termsError"></span>
+        </div>
+
+        <button type="submit">Execute Registration</button>
+    </form>
+</div>
+
+</body>
+</html>

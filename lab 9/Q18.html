@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Q18 Validation</title>
+</head>
+<body>
+
+<div id="form"></div>
+<p id="msg"></p>
+
+<script>
+for (let i = 0; i < 2; i++) {
+  const inp = document.createElement("input");
+  inp.onkeyup = () => {
+    document.getElementById("msg").innerText =
+      inp.value.length < 3 ? "Too short" : "Valid";
+  };
+  document.getElementById("form").appendChild(inp);
+}
+</script>
+
+</body>
+</html>

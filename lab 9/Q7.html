@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Q7 Background</title>
+<style>
+button { margin: 5px; }
+</style>
+</head>
+<body>
+
+<script>
+const colors = ["lightgray", "beige", "lavender"];
+
+for (let c of colors) {
+  const btn = document.createElement("button");
+  btn.innerText = c;
+  btn.onclick = () => document.body.style.background = c;
+  document.body.appendChild(btn);
+}
+</script>
+
+</body>
+</html>

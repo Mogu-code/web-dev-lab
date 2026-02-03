@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Check Console</title>
+</head>
+
+<body>
+
+<h2>Open Console to View Output</h2>
+
+<script>
+
+// Constants
+console.log("Math.PI =", Math.PI);
+console.log("Math.E =", Math.E);
+
+// Rounding
+var x1 = 3.99;
+var x2 = 3.21;
+
+console.log("Math.round(3.99) =", Math.round(x1));
+console.log("Math.round(3.21) =", Math.round(x2));
+
+// Floor, Ceil, Trunc
+console.log("Math.floor(3.99) =", Math.floor(x1));
+console.log("Math.ceil(3.21) =", Math.ceil(x2));
+console.log("Math.trunc(3.99) =", Math.trunc(x1));
+
+// Power and Square Root
+console.log("Math.pow(2, 3) =", Math.pow(2, 3));
+console.log("Math.sqrt(25) =", Math.sqrt(25));
+
+// Logarithm
+console.log("Math.log(10) =", Math.log(10));
+
+// Trigonometric Functions (Radians)
+console.log("Math.sin(0) =", Math.sin(0));
+console.log("Math.cos(0) =", Math.cos(0));
+console.log("Math.tan(0) =", Math.tan(0));
+
+// Absolute Value
+console.log("Math.abs(-45) =", Math.abs(-45));
+
+// Max and Min
+console.log("Math.max(10, 20, 5) =", Math.max(10, 20, 5));
+console.log("Math.min(10, 20, 5) =", Math.min(10, 20, 5));
+
+
+// 1. Random number between 0 and 1
+console.log("Random (0 to 1):", Math.random());
+
+// 2. Random number between 0 and 6
+console.log("Random (0 to 6):", Math.random() * 6);
+
+// 3. Random integer between 1 and 6 (Dice logic)
+console.log("Random Integer (1 to 6):", Math.floor(Math.random() * 6) + 1);
+
+// 4. Random number between MIN and MAX (general formula)
+var min = 10;
+var max = 20;
+
+console.log("Random between 10 and 20:",
+    Math.random() * (max - min) + min);
+
+// 5. Random INTEGER between MIN and MAX
+console.log("Random INTEGER between 10 and 20:",
+    Math.floor(Math.random() * (max - min + 1)) + min);
+
+
+// 1. IF statement
+var x = 10;
+
+if (x > 5) {
+    console.log("IF: x is greater than 5");
+}
+
+// 2. IF–ELSE statement
+var y = 3;
+
+if (y > 5) {
+    console.log("IF-ELSE: y is greater than 5");
+} else {
+    console.log("IF-ELSE: y is less than or equal to 5");
+}
+
+// 3. NESTED IF–ELSE
+var z = 15;
+
+if (z > 10) {
+    if (z < 20) {
+        console.log("NESTED IF: z is between 10 and 20");
+    } else {
+        console.log("NESTED IF: z is greater than or equal to 20");
+    }
+} else {
+    console.log("NESTED IF: z is 10 or less");
+}
+
+// 4. IF – ELSE IF – ELSE
+var marks = 72;
+
+if (marks >= 90) {
+    console.log("ELSE IF: Grade A");
+} else if (marks >= 75) {
+    console.log("ELSE IF: Grade B");
+} else if (marks >= 50) {
+    console.log("ELSE IF: Grade C");
+} else {
+    console.log("ELSE IF: Fail");
+}
+
+
+/* =========================
+   ARITHMETIC OPERATORS
+   ========================= */
+var a = 10;
+var b = 3;
+
+console.log("Arithmetic Operators");
+console.log("a + b =", a + b);
+console.log("a - b =", a - b);
+console.log("a * b =", a * b);
+console.log("a / b =", a / b);
+console.log("a % b =", a % b);
+
+
+/* =========================
+   COMPARISON OPERATORS
+   ========================= */
+console.log("\nComparison Operators");
+
+console.log("5 == '5' :", 5 == '5');     // value check
+console.log("5 === '5' :", 5 === '5');   // value + type check
+console.log("5 != '5' :", 5 != '5');
+console.log("5 !== '5' :", 5 !== '5');
+console.log("a > b :", a > b);
+console.log("a < b :", a < b);
+console.log("a >= b :", a >= b);
+console.log("a <= b :", a <= b);
+
+
+/* =========================
+   ASSIGNMENT OPERATORS
+   ========================= */
+console.log("\nAssignment Operators");
+
+var x = 10;
+console.log("x =", x);
+
+x += 5;
+console.log("x += 5 →", x);
+
+x -= 2;
+console.log("x -= 2 →", x);
+
+x *= 2;
+console.log("x *= 2 →", x);
+
+x /= 4;
+console.log("x /= 4 →", x);
+
+x %= 3;
+console.log("x %= 3 →", x);
+
+
+/* =========================
+   LOGICAL OPERATORS
+   ========================= */
+console.log("\nLogical Operators");
+
+var p = true;
+var q = false;
+
+console.log("p && q :", p && q);
+console.log("p || q :", p || q);
+console.log("!p :", !p);
+
+</script>
+
+
+
+</body>
+</html>

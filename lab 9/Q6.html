@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Q6 Shopping</title>
+<style>
+li { cursor: pointer; }
+.done { text-decoration: line-through; }
+</style>
+</head>
+<body>
+
+<ul id="list"></ul>
+
+<script>
+const items = ["Milk", "Bread", "Eggs"];
+
+items.forEach(item => {
+  const li = document.createElement("li");
+  li.innerText = item;
+  li.onclick = () => li.classList.toggle("done");
+  document.getElementById("list").appendChild(li);
+});
+</script>
+
+</body>
+</html>

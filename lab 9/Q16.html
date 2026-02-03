@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Q16 Timer</title>
+</head>
+<body>
+
+<p id="num"></p>
+
+<script>
+let i = 1;
+const timer = setInterval(() => {
+  document.getElementById("num").innerText = i;
+  if (i === 10) clearInterval(timer);
+  i++;
+}, 1000);
+</script>
+
+</body>
+</html>

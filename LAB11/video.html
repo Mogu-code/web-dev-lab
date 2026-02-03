@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML5 Video</title>
+  <style>
+    body{
+      font-family: Arial;
+      text-align:center;
+      padding:30px;
+      background:#fffbe9;
+    }
+    .wrap{
+      max-width:700px;
+      margin:auto;
+      padding:18px;
+      background:white;
+      border-radius:0;
+          }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <h2>HTML5 Video Element</h2>
+    <p><b>Supported formats:</b> MP4, WebM, Ogg</p>
+
+    <video width="520" height="320" controls autoplay muted loop>
+      <source src="movie.mp4" type="video/mp4">
+      <source src="movie.webm" type="video/webm">
+      <source src="movie.ogg" type="video/ogg">
+      Browser does not support the video tag
+    </video>
+
+    <p>
+      Attributes used: controls, autoplay, muted, loop
+    </p>
+  </div>
+
+</body>
+</html>

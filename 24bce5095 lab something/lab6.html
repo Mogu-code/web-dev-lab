@@ -1,0 +1,28 @@
+<html>
+<head>
+<script>
+function toggle() {
+    document.images['button1'].src = "button_on.jpg";
+}
+
+function toggleBack() {
+    document.images['button1'].src = "button_off.jpg";
+}
+</script>
+</head>
+
+<body>
+
+<a href="test.html"
+   onmouseover="toggle()"
+   onmouseout="toggleBack()">
+
+   <img name="button1" src="button_off.jpg">
+
+</a>
+
+</body>
+</html>
+
+
+

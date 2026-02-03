@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Q17 Menu</title>
+<style>
+.active { font-weight: bold; }
+</style>
+</head>
+<body>
+
+<ul id="menu">
+  <li class="active">Home</li>
+  <li>About</li>
+  <li>Contact</li>
+</ul>
+
+<script>
+let index = 0;
+const items = document.querySelectorAll("li");
+
+document.addEventListener("keydown", e => {
+  items[index].classList.remove("active");
+  if (e.key === "ArrowDown") index = (index + 1) % items.length;
+  if (e.key === "ArrowUp") index = (index - 1 + items.length) % items.length;
+  items[index].classList.add("active");
+});
+</script>
+
+</body>
+</html>
