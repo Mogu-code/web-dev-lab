@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Media Query - Basic Syntax</title>
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      margin:0;
+      padding:25px;
+      background: lightblue;
+      font-size:18px;
+      transition: 0.3s;
+    }
+
+    .box{
+      max-width:700px;
+      margin:auto;
+      padding:18px;
+      border:2px solid #111;
+      background:#fff;
+    }
+
+    /* Mobile screens */
+    @media (max-width: 600px){
+      body{
+        background: lightgreen;
+        font-size:16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Media Query: Basic Syntax</h2>
+    <p><b>Desktop:</b> lightblue background, font-size 18px</p>
+    <p><b>Mobile (max-width: 600px):</b> lightgreen background, font-size 16px</p>
+    <p>Resize the browser window to see the effect.</p>
+  </div>
+</body>
+</html>
