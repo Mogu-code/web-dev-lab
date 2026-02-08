@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Media Query - Resolution</title>
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      padding:25px;
+      background:#f2f4f8;
+    }
+
+    .card{
+      max-width:850px;
+      margin:auto;
+      border:2px solid #111;
+      background:#fff;
+      padding:18px;
+    }
+
+    .imgbox{
+      width:220px;
+      height:220px;
+      margin:15px auto;
+      border:2px solid #111;
+      background: repeating-linear-gradient(
+        45deg,
+        #e9eefc,
+        #e9eefc 10px,
+        #fff 10px,
+        #fff 20px
+      );
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:bold;
+      text-align:center;
+    }
+
+    /* High resolution screens (retina) */
+    @media (min-resolution: 2dppx){
+      .imgbox{
+        background: repeating-linear-gradient(
+          45deg,
+          #d1fae5,
+          #d1fae5 10px,
+          #fff 10px,
+          #fff 20px
+        );
+      }
+      .imgbox::after{
+        content:"(High Resolution: 2dppx+)";
+      }
+    }
+
+    /* Default message */
+    .imgbox::after{
+      content:"(Normal Resolution)";
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2 style="text-align:center;">Resolution Media Query</h2>
+    <p>
+      This demonstrates <b>@media (min-resolution: 2dppx)</b>.<br>
+      High DPI screens trigger different styling.
+    </p>
+
+    <div class="imgbox">Demo Box</div>
+  </div>
+</body>
+</html>

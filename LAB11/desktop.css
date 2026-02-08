@@ -1,0 +1,14 @@
+body{
+  font-family: Arial;
+  background: #e9eefc;
+  padding: 30px;
+}
+
+.wrap{
+  max-width: 850px;
+  margin: auto;
+  border: 2px solid #111;
+  padding: 18px;
+  background: #fff;
+  font-size: 18px;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Media Query - Orientation</title>
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      padding:25px;
+      background:#f4f4f4;
+    }
+
+    .container{
+      max-width:900px;
+      margin:auto;
+      border:2px solid #111;
+      background:#fff;
+      padding:18px;
+      display:flex;
+      gap:12px;
+    }
+
+    .box{
+      flex:1;
+      min-height:140px;
+      border:2px solid #111;
+      background:#fafafa;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:bold;
+    }
+
+    /* Portrait mode */
+    @media (orientation: portrait){
+      .container{
+        flex-direction: column;
+      }
+      body{
+        background:#eafff8;
+      }
+    }
+
+    /* Landscape mode */
+    @media (orientation: landscape){
+      .container{
+        flex-direction: row;
+      }
+      body{
+        background:#fffbe9;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center;">Orientation Media Query</h2>
+  <p style="text-align:center;">Rotate device OR resize window height/width.</p>
+
+  <div class="container">
+    <div class="box">Block 1</div>
+    <div class="box">Block 2</div>
+    <div class="box">Block 3</div>
+  </div>
+</body>
+</html>

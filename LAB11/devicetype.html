@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Media Query - Device Type (Screen vs Print)</title>
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      padding:25px;
+      background:white;
+      color:#111;
+    }
+
+    .box{
+      max-width:850px;
+      margin:auto;
+      border:2px solid #111;
+      padding:18px;
+      background:#f8fafc;
+    }
+
+    .badge{
+      display:inline-block;
+      border:2px solid #111;
+      padding:6px 10px;
+      font-weight:bold;
+      background:#e9eefc;
+    }
+
+    /* Applies only on screen */
+    @media screen{
+      body{
+        background:#fff;
+      }
+    }
+
+    /* Applies only when printing */
+    @media print{
+      body{
+        background:none;
+        color:black;
+      }
+      .box{
+        border:1px solid #000;
+        background:white;
+      }
+      .badge{
+        background:white;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Device Type Media Query</h2>
+    <span class="badge">@media screen / @media print</span>
+    <p>
+      Try pressing <b>Ctrl + P</b> (Print Preview).<br>
+      You will see the print styling applied.
+    </p>
+  </div>
+</body>
+</html>

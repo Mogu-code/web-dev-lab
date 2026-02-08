@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EquityX | Professional Trading Terminal</title>
+    <style>
+        /* ===== SYSTEM DESIGN TOKENS ===== */
+        :root {
+            --bg: #0a0a0c;
+            --surface: #141417;
+            --border: #2d2d32;
+            --accent-green: #00ff41; /* Terminal Green */
+            --accent-blue: #2e6ff2;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --font-main: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            border-bottom: 1px solid var(--border);
+            background: rgba(10, 10, 12, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 800;
+            letter-spacing: -1px;
+            font-size: 24px;
+            color: var(--accent-green);
+        }
+
+        /* ===== HERO / HEADER SECTION ===== */
+        header {
+            padding: 100px 5% 60px 5%;
+            text-align: center;
+            /* 8 Parameters: name | duration | timing | delay | iteration | direction | fill-mode | play-state */
+            animation: slideDown 1s cubic-bezier(0.19, 1, 0.22, 1) 0s 1 normal both running;
+        }
+
+        header h1 {
+            font-size: clamp(40px, 8vw, 80px);
+            margin: 0;
+            line-height: 0.9;
+            text-transform: uppercase;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 20px auto;
+            font-size: 18px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.4s forwards;
+        }
+
+        /* ===== LIVE TICKER (Infinite Animation) ===== */
+        .ticker-wrap {
+            width: 100%;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            overflow: hidden;
+            padding: 10px 0;
+        }
+
+        .ticker {
+            display: flex;
+            white-space: nowrap;
+            /* Infinite Linear Direction */
+            animation: marquee 30s linear infinite;
+        }
+
+        .ticker-item {
+            padding: 0 40px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+        }
+
+        .ticker-item span { color: var(--accent-green); }
+
+        /* ===== PRODUCT SECTION ===== */
+        .container {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .hero-visual {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+            align-items: center;
+            border: 1px solid var(--border);
+            padding: 40px;
+            background: var(--surface);
+        }
+
+        /* MOVE LEFT -> RIGHT ELEMENT */
+        .chart-box {
+            height: 300px;
+            border: 1px solid var(--border);
+            background: repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 41px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trading-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-green);
+            box-shadow: 0 0 15px var(--accent-green);
+            /* Left to Right Animation using percentages */
+            animation: scanner 4s ease-in-out infinite;
+        }
+
+        .content h2 {
+            font-size: 32px;
+            margin-top: 0;
+        }
+
+        /* ===== CTA BUTTON ===== */
+        .cta-container {
+            margin-top: 30px;
+        }
+
+        .btn-primary {
+            background: var(--accent-green);
+            color: black;
+            border: none;
+            padding: 16px 40px;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s steps(4); /* Steps for a retro feel */
+        }
+
+        .btn-primary:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 4px 4px 0px var(--text-primary);
+            background: white;
+        }
+
+        /* ===== KEYFRAMES ===== */
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes scanner {
+            0% { transform: translateX(-100%); }
+            50% { transform: translateX(0); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .hero-visual {
+                grid-template-columns: 1fr;
+            }
+            header h1 { font-size: 48px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">EQUITY.X</div>
+        <div style="font-family: var(--font-mono); font-size: 12px;">SYSTEM_STATUS: <span style="color: var(--accent-green);">ONLINE</span></div>
+    </nav>
+
+    <header>
+        <h1>Trade the future <br> of assets.</h1>
+        <p>A professional-grade terminal for the modern investor. Real-time execution, institutional liquidity, and zero-lag interface.</p>
+        
+        <div class="cta-container">
+            <button class="btn-primary">Open Terminal</button>
+        </div>
+    </header>
+
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <div class="ticker-item">BTC/USD <span>$64,201.50 (+2.4%)</span></div>
+            <div class="ticker-item">ETH/USD <span>$3,450.12 (-0.8%)</span></div>
+            <div class="ticker-item">AAPL <span>$189.45 (+1.2%)</span></div>
+            <div class="ticker-item">TSLA <span>$175.20 (+4.5%)</span></div>
+            <div class="ticker-item">NVDA <span>$822.70 (+3.1%)</span></div>
+            <div class="ticker-item">BTC/USD <span>$64,201.50 (+2.4%)</span></div>
+            <div class="ticker-item">ETH/USD <span>$3,450.12 (-0.8%)</span></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="hero-visual">
+            <div class="chart-box">
+                <div class="trading-line"></div>
+            </div>
+            <div class="content">
+                <h2>Institutional Tools. <br> Retail Access.</h2>
+                <p style="color: var(--text-secondary);">
+                    Stop using apps designed for social media. EquityX is built for speed. 
+                    Get sub-millisecond order execution and advanced technical charting 
+                    in a clean, distraction-free environment.
+                </p>
+                <ul style="list-style: none; padding: 0; color: var(--accent-green); font-family: var(--font-mono); font-size: 14px;">
+                    <li>> ADVANCED ORDER TYPES</li>
+                    <li>> CO-LOCATED SERVERS</li>
+                    <li>> 24/7 MARKET DATA</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

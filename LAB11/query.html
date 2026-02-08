@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Media Query - Screen Size</title>
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      margin:0;
+      padding:25px;
+      background:#f4f4f4;
+    }
+
+    .card{
+      max-width:850px;
+      margin:auto;
+      border:2px solid #111;
+      background:#fff;
+      padding:18px;
+    }
+
+    .title{
+      text-align:center;
+      padding:10px;
+      border:2px solid #111;
+      background:#e9eefc;
+      margin-bottom:15px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3,1fr);
+      gap:12px;
+    }
+
+    .item{
+      border:2px solid #111;
+      padding:14px;
+      text-align:center;
+      background:#fafafa;
+    }
+
+    /* Mobile */
+    @media (max-width: 600px){
+      .grid{
+        grid-template-columns: 1fr;
+      }
+      body{
+        font-size:14px;
+      }
+    }
+
+    /* Desktop large */
+    @media (min-width: 1024px){
+      body{
+        font-size:18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="title"><h2>Screen Size Media Queries</h2></div>
+    <p><b>Goal:</b> Same website works for Mobile / Tablet / Desktop.</p>
+
+    <div class="grid">
+      <div class="item">Box 1</div>
+      <div class="item">Box 2</div>
+      <div class="item">Box 3</div>
+    </div>
+  </div>
+</body>
+</html>

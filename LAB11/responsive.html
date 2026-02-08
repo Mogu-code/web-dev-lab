@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Media Query - Responsive Flex Layout</title>
+  <style>
+    body{
+      font-family: Arial, sans-serif;
+      background:#f2f4f8;
+      padding:25px;
+    }
+
+    .wrap{
+      max-width:900px;
+      margin:auto;
+      padding:18px;
+      border:2px solid #111;
+      background:#fff;
+    }
+
+    .container{
+      display:flex;
+      gap:12px;
+    }
+
+    .panel{
+      flex:1;
+      border:2px solid #111;
+      padding:16px;
+      background:#fafafa;
+      min-height:120px;
+    }
+
+    /* Mobile layout: vertical */
+    @media (max-width: 600px){
+      .container{
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h2 style="text-align:center;">Responsive Layout Example</h2>
+    <p><b>Desktop:</b> horizontal layout | <b>Mobile:</b> vertical layout</p>
+
+    <div class="container">
+      <div class="panel">Section A</div>
+      <div class="panel">Section B</div>
+      <div class="panel">Section C</div>
+    </div>
+  </div>
+</body>
+</html>
