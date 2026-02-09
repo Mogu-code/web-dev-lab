@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>POST Payload Demo</title>
+</head>
+<body>
+
+  <h2>POST Payload Demo (Check Network → Payload)</h2>
+
+  <form id="myForm">
+    <label>Name:</label><br>
+    <input type="text" id="username" required><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" id="email" required><br><br>
+
+    <button type="submit">Send POST</button>
+  </form>
+
+  <h3>Server Response:</h3>
+  <pre id="result">---</pre>
+
+  <script>
+    document.getElementById("myForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+
+      // This is the PAYLOAD (request body)
+      const payload = {
+        username: username,
+        email: email
+      };
+
+      try {
+        const res = await fetch("https://httpbin.org/post", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)   // <-- PAYLOAD goes here
+        });
+
+        const data = await res.json();
+
+        // Display what server received (proof of payload)
+        document.getElementById("result").textContent =
+          JSON.stringify(data.json, null, 2);
+
+      } catch (err) {
+        document.getElementById("result").textContent =
+          "Error: " + err;
+      }
+    });
+  </script>
+
+</body>
+</html>

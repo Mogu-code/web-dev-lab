@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Form Output</title>
+</head>
+<body>
+<h2>Submitted Details</h2>
+<p><strong>Name:</strong> <span id="name"></span></p>
+<p><strong>Email:</strong> <span id="email"></span></p>
+<script>
+   // Read URL parameters
+   const params = new URLSearchParams(window.location.search);
+   // Print values
+   document.getElementById("name").textContent =
+       params.get("username");
+   document.getElementById("email").textContent =
+       params.get("email");
+</script>
+</body>
+</html>

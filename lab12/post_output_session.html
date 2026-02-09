@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>POST Output Screen</title>
+</head>
+<body>
+
+  <h2>Submitted Details (POST Simulation)</h2>
+
+  <p><strong>Name:</strong> <span id="name"></span></p>
+  <p><strong>Email:</strong> <span id="email"></span></p>
+
+  <button onclick="goBack()">Go Back</button>
+
+  <script>
+    // Fetch stored values (simulating POST body retrieval)
+    document.getElementById("name").textContent =
+      sessionStorage.getItem("username");
+
+    document.getElementById("email").textContent =
+      sessionStorage.getItem("email");
+
+    function goBack() {
+      window.location.href = "session.html";
+    }
+  </script>
+
+</body>
+</html>
