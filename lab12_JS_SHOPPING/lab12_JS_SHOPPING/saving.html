@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Save File using JavaScript</title>
+</head>
+<body>
+
+  <h2>Save File from Browser using JavaScript</h2>
+  <button onclick="saveFile()">Save File</button>
+
+  <script>
+    async function saveFile() {
+      try {
+        // Ask user where to save the file
+        const handle = await window.showSaveFilePicker({
+          suggestedName: "data.txt",
+          types: [ {description: "Text Files",
+              accept: {
+                "text/plain": [".txt"]
+                      }
+                    }
+                 ]
+          });
+
+        // Create a writable stream
+        const writable = await handle.createWritable();
+
+        // Write content
+        await writable.write("Hello from browser JavaScript");
+
+        // Close the file
+        await writable.close();
+
+        alert("File saved successfully!");
+      } catch (err) {
+        console.error(err);
+        alert("File save cancelled or failed.");
+      }
+    }
+  </script>
+
+</body>
+</html>
