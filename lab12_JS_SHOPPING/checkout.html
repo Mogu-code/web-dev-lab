@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICE CO. | Checkout</title>
+    <style>
+        :root {
+            --sky-blue: #A2D2FF;
+            --lemon: #FFD966;
+            --strawberry: #FF85A2;
+            --cream: #FFF9F0;
+            --black: #000000;
+            --white: #ffffff;
+            --border: 4px solid var(--black);
+            --shadow: 8px 8px 0px var(--black);
+        }
+
+        * { box-sizing: border-box; border-radius: 0 !important; transition: all 0.2s ease; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; background: var(--cream); color: var(--black); }
+        h1, h2, h3 { text-transform: uppercase; margin: 0; font-weight: 900; }
+
+        .app-container { display: flex; flex-direction: column; min-height: 100vh; }
+        main { flex: 1; padding: 60px 5%; }
+
+        header {
+            background: var(--white); border-bottom: var(--border);
+            padding: 0 5%; height: 80px;
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 2000;
+        }
+        .logo { font-size: 2rem; font-weight: 900; letter-spacing: -2px; text-decoration: none; color: var(--black); }
+        .nav-links { display: flex; align-items: center; height: 100%; }
+        .nav-links a {
+            text-decoration: none; color: var(--black); font-weight: 900;
+            text-transform: uppercase; padding: 0 20px;
+            height: 100%; display: flex; align-items: center;
+            border-left: var(--border);
+        }
+        .nav-links a:last-child { border-right: var(--border); }
+        .nav-links a:hover { background: var(--strawberry); color: white; }
+
+        .cta-main {
+            background: var(--black); color: white; padding: 18px 36px;
+            font-weight: 900; text-transform: uppercase;
+            cursor: pointer; border: none; font-size: 1rem;
+            display: inline-block; text-decoration: none; text-align: center;
+        }
+        .cta-main:hover { transform: translate(-4px, -4px); box-shadow: var(--shadow); background: var(--strawberry); }
+        .cta-alt { background: var(--white); color: var(--black); border: var(--border); }
+        .cta-alt:hover { color: white; }
+
+        /* Layout */
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Form */
+        .checkout-form { background: var(--white); border: var(--border); padding: 40px; }
+        .checkout-form h2 { font-size: 2rem; margin-bottom: 30px; border-bottom: 3px solid black; padding-bottom: 15px; }
+        .form-group { margin-bottom: 24px; }
+        .form-group label { display: block; font-weight: 900; text-transform: uppercase; margin-bottom: 8px; font-size: 0.85rem; }
+        .form-group input, .form-group select {
+            width: 100%; padding: 14px 16px; border: var(--border);
+            font-family: inherit; font-size: 1rem; background: var(--cream);
+        }
+        .form-group input:focus, .form-group select:focus { outline: none; background: var(--sky-blue); }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        /* Delivery options */
+        .delivery-options { display: flex; flex-direction: column; gap: 12px; }
+        .delivery-option {
+            display: flex; align-items: center; gap: 15px;
+            padding: 16px; border: var(--border); cursor: pointer; background: var(--cream);
+        }
+        .delivery-option:hover, .delivery-option.selected { background: var(--sky-blue); }
+        .delivery-option input[type="radio"] { width: 20px; height: 20px; cursor: pointer; }
+        .delivery-option-info { flex: 1; }
+        .delivery-option-info strong { display: block; font-weight: 900; text-transform: uppercase; }
+        .delivery-option-info small { color: #555; }
+        .delivery-option-price { font-weight: 900; font-size: 1.1rem; }
+
+        /* Order summary */
+        .order-summary { background: var(--white); border: var(--border); padding: 40px; align-self: start; position: sticky; top: 100px; }
+        .order-summary h2 { font-size: 2rem; margin-bottom: 30px; border-bottom: 3px solid black; padding-bottom: 15px; }
+        .summary-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 14px 0; border-bottom: 2px solid #eee;
+            gap: 10px;
+        }
+        .summary-item:last-of-type { border-bottom: none; }
+        .summary-item-name { font-weight: bold; font-size: 0.95rem; }
+        .summary-item-meta { color: #666; font-size: 0.85rem; }
+        .summary-item-price { font-weight: 900; flex-shrink: 0; }
+        .summary-total {
+            border-top: var(--border); margin-top: 20px; padding-top: 20px;
+            display: flex; justify-content: space-between; font-size: 1.4rem; font-weight: 900;
+        }
+
+        /* Storage notes */
+        .storage-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; max-width: 1100px; margin-left: auto; margin-right: auto; }
+        .storage-box { padding: 20px 24px; border: var(--border); font-size: 0.85rem; line-height: 1.6; }
+        .storage-box.local  { background: #bdfcc9; }
+        .storage-box.session { background: var(--sky-blue); }
+        .storage-box strong { display: block; font-size: 1rem; margin-bottom: 8px; text-transform: uppercase; }
+        .storage-box code { background: rgba(0,0,0,0.08); padding: 2px 6px; font-size: 0.8rem; }
+
+        /* Session cleared banner */
+        #session-cleared-banner {
+            display: none; background: var(--strawberry); border: var(--border);
+            padding: 16px 24px; text-align: center; font-weight: 900;
+            text-transform: uppercase; margin-bottom: 30px; max-width: 1100px; margin-left: auto; margin-right: auto;
+        }
+
+        /* Success overlay */
+        #success-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.85); z-index: 9999;
+            justify-content: center; align-items: center;
+        }
+        #success-overlay.active { display: flex; }
+        .success-box {
+            background: var(--lemon); border: var(--border); padding: 60px;
+            text-align: center; box-shadow: 12px 12px 0 black; max-width: 500px;
+        }
+        .success-box h2 { font-size: 3rem; margin-bottom: 20px; }
+        .success-box p { font-size: 1.1rem; margin-bottom: 30px; }
+
+        footer {
+            background: var(--black); color: white; padding: 80px 5% 40px;
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 50px;
+        }
+        footer h3 { color: var(--lemon); margin-bottom: 20px; }
+        footer ul { list-style: none; padding: 0; }
+        footer li { margin-bottom: 12px; color: #aaa; }
+    </style>
+</head>
+<body>
+
+<!-- Order Success Overlay -->
+<div id="success-overlay">
+    <div class="success-box">
+        <div style="font-size: 5rem;">🍦</div>
+        <h2>ORDER PLACED!</h2>
+        <p id="success-message">Thanks, <span id="success-name"></span>! Your cold treats are on the way.</p>
+        <a href="products.html" class="cta-main" onclick="clearOrderAfterSuccess()">Keep Shopping</a>
+    </div>
+</div>
+
+<div class="app-container">
+    <header>
+        <a class="logo" href="products.html">ICE CO.</a>
+        <nav class="nav-links">
+            <a href="products.html">Home</a>
+            <a href="cart.html">← Back to Bag</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 style="font-size: 3.5rem; margin-bottom: 40px; max-width: 1100px; margin-left: auto; margin-right: auto;">Checkout</h1>
+
+        <!-- Storage Explainer -->
+        <div class="storage-grid">
+            <div class="storage-box local">
+                <strong>📦 localStorage (Persistent)</strong>
+                Your cart order summary is read from <code>localStorage.getItem('ice_co_cart')</code>.
+                This data <strong>survives page refresh, closing the tab, and reopening the browser</strong>
+                — it stays until you clear it or empty your bag.
+            </div>
+            <div class="storage-box session">
+                <strong>⏳ sessionStorage (Temporary)</strong>
+                Your name and delivery choice are saved with <code>sessionStorage.setItem()</code>.
+                This data is <strong>wiped automatically when the tab or browser is closed</strong>.
+                Try it: fill the form, then refresh — the form remembers. Close the tab and reopen — it's gone!
+            </div>
+        </div>
+
+        <!-- Session cleared notice (shown if refreshed with no session data) -->
+        <div id="session-cleared-banner">
+            ⚠️ Session data was cleared — sessionStorage resets when the tab/browser is closed. Your cart (localStorage) is still here!
+        </div>
+
+        <div class="checkout-layout">
+            <!-- LEFT: Checkout Form -->
+            <div class="checkout-form">
+                <h2>Delivery Details</h2>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" placeholder="e.g. Alex" oninput="saveToSession()">
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" placeholder="e.g. Patel" oninput="saveToSession()">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="you@email.com" oninput="saveToSession()">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Street Address</label>
+                    <input type="text" id="address" placeholder="123 Cold Street" oninput="saveToSession()">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" placeholder="Chennai" oninput="saveToSession()">
+                    </div>
+                    <div class="form-group">
+                        <label for="pincode">PIN Code</label>
+                        <input type="text" id="pincode" placeholder="600001" oninput="saveToSession()">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Delivery Option</label>
+                    <div class="delivery-options" id="delivery-options">
+                        <label class="delivery-option" onclick="selectDelivery('standard', this)">
+                            <input type="radio" name="delivery" value="standard" checked>
+                            <div class="delivery-option-info">
+                                <strong>Standard Delivery</strong>
+                                <small>3–5 business days</small>
+                            </div>
+                            <span class="delivery-option-price">FREE</span>
+                        </label>
+                        <label class="delivery-option" onclick="selectDelivery('express', this)">
+                            <input type="radio" name="delivery" value="express">
+                            <div class="delivery-option-info">
+                                <strong>Express Delivery</strong>
+                                <small>Next day before 12 PM</small>
+                            </div>
+                            <span class="delivery-option-price">$4.99</span>
+                        </label>
+                        <label class="delivery-option" onclick="selectDelivery('pickup', this)">
+                            <input type="radio" name="delivery" value="pickup">
+                            <div class="delivery-option-info">
+                                <strong>Store Pickup</strong>
+                                <small>Ready in 2 hours</small>
+                            </div>
+                            <span class="delivery-option-price">FREE</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div style="margin-top: 10px; background: var(--lemon); border: var(--border); padding: 14px 18px; font-size: 0.85rem;">
+                    <strong>💾 sessionStorage live demo:</strong> 
+                    Your form data is saved as you type using <code>sessionStorage.setItem()</code>. 
+                    Refresh this page — your info is still here! Close the tab and come back — it's gone.
+                    <br><br>
+                    <span id="session-status" style="font-weight:900;">Session data: saved ✓</span>
+                </div>
+
+                <button class="cta-main" style="width:100%; margin-top:30px; font-size:1.1rem; padding: 22px;" onclick="placeOrder()">
+                    Place Order 🍦
+                </button>
+            </div>
+
+            <!-- RIGHT: Order Summary from localStorage -->
+            <div class="order-summary">
+                <h2>Order Summary</h2>
+                <div id="summary-items">
+                    <p style="color:#888; text-align:center; padding:20px;">Loading from localStorage...</p>
+                </div>
+                <div class="summary-total">
+                    <span>TOTAL</span>
+                    <span>$<span id="summary-grand-total">0.00</span></span>
+                </div>
+                <a href="cart.html" style="display:block; text-align:center; margin-top:20px; font-weight:900; color:var(--black);">← Edit Bag</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div><h3>ICE CO.</h3><p>Handcrafted Ice Creams & Milkshakes.</p></div>
+        <div><h3>Explore</h3><ul><li>Shop All</li><li>Milkshakes</li></ul></div>
+        <div><h3>Help</h3><ul><li>Shipping</li><li>Track Order</li></ul></div>
+        <div><h3>Stay Cold</h3></div>
+    </footer>
+</div>
+
+<script>
+    /* =============================================
+       CHECKOUT.HTML — ICE CO. CHECKOUT PAGE
+
+       LOCAL STORAGE  → reads order summary (cart)
+       SESSION STORAGE → saves form data temporarily
+       ============================================= */
+
+    const products = [
+        { id: 1,  name: "Sunset Mango",      price: 5.50 },
+        { id: 2,  name: "Berry Blast",       price: 4.75 },
+        { id: 3,  name: "Wild Pistachio",    price: 6.00 },
+        { id: 4,  name: "Midnight Choco",    price: 5.00 },
+        { id: 5,  name: "Cloud Vanilla",     price: 4.00 },
+        { id: 6,  name: "Minty Fresh",       price: 5.25 },
+        { id: 7,  name: "Sea Salt Choco",    price: 5.75 },
+        { id: 8,  name: "Coconut Dream",     price: 5.50 },
+        { id: 9,  name: "Almond Crunch",     price: 6.25 },
+        { id: 10, name: "Lemon Sorbet",      price: 4.50 },
+        { id: 11, name: "Strawberry Silk",   price: 5.50 },
+        { id: 12, name: "Matcha Zen",        price: 6.50 },
+        { id: 13, name: "Oreo Titan",        price: 8.50 },
+        { id: 14, name: "Strawberry Velvet", price: 7.50 },
+        { id: 15, name: "Mango Monsoon",     price: 8.00 },
+        { id: 16, name: "Choco Fudge",       price: 8.25 },
+        { id: 17, name: "Vanilla Caramel",   price: 7.00 },
+        { id: 18, name: "Banana Nut",        price: 7.75 },
+        { id: 19, name: "Watermelon Ice",    price: 3.50 },
+        { id: 20, name: "Grape Chill",       price: 3.50 },
+        { id: 21, name: "Lime Zing",         price: 3.00 },
+        { id: 22, name: "Berry Frozen",      price: 4.00 },
+        { id: 23, name: "Orange Pop",        price: 3.25 },
+        { id: 24, name: "Rainbow Blast",     price: 4.50 }
+    ];
+
+    let selectedDelivery = 'standard';
+    let deliveryFee = 0;
+
+    // ════════════════════════════════════════
+    //  ORDER SUMMARY — reads from localStorage
+    // ════════════════════════════════════════
+    function renderOrderSummary() {
+        // localStorage.getItem — read the persistent cart data
+        const cart = JSON.parse(localStorage.getItem('ice_co_cart')) || {};
+        const summaryEl = document.getElementById('summary-items');
+        const keys = Object.keys(cart);
+
+        if (keys.length === 0) {
+            summaryEl.innerHTML = `
+                <div style="text-align:center; padding:20px;">
+                    <p style="color:#888; margin-bottom:15px;">Your cart is empty.</p>
+                    <a href="products.html" style="font-weight:900; color:var(--black);">← Go Shopping</a>
+                </div>`;
+            document.getElementById('summary-grand-total').innerText = '0.00';
+            return;
+        }
+
+        let subtotal = 0;
+
+        // DOM manipulation: build order summary from localStorage cart
+        summaryEl.innerHTML = keys.map(id => {
+            const p = products.find(prod => prod.id == id);
+            if (!p) return '';
+            const itemTotal = p.price * cart[id];
+            subtotal += itemTotal;
+            return `
+                <div class="summary-item">
+                    <div>
+                        <div class="summary-item-name">${p.name}</div>
+                        <div class="summary-item-meta">Qty: ${cart[id]} × $${p.price.toFixed(2)}</div>
+                    </div>
+                    <div class="summary-item-price">$${itemTotal.toFixed(2)}</div>
+                </div>`;
+        }).join('');
+
+        // Add delivery fee row
+        summaryEl.innerHTML += `
+            <div class="summary-item" style="border-top: 2px dashed #ccc; margin-top:10px; padding-top:14px;">
+                <div class="summary-item-name">Delivery</div>
+                <div class="summary-item-price" id="delivery-fee-display">${deliveryFee === 0 ? 'FREE' : '$' + deliveryFee.toFixed(2)}</div>
+            </div>`;
+
+        const grandTotal = subtotal + deliveryFee;
+        document.getElementById('summary-grand-total').innerText = grandTotal.toFixed(2);
+    }
+
+    // ════════════════════════════════════════
+    //  SESSION STORAGE — saves form data temporarily
+    // ════════════════════════════════════════
+
+    // Save all form fields to sessionStorage as user types
+    function saveToSession() {
+        const formData = {
+            firstName:  document.getElementById('first-name').value,
+            lastName:   document.getElementById('last-name').value,
+            email:      document.getElementById('email').value,
+            address:    document.getElementById('address').value,
+            city:       document.getElementById('city').value,
+            pincode:    document.getElementById('pincode').value,
+            delivery:   selectedDelivery
+        };
+        // sessionStorage.setItem — temporary, cleared when tab/browser closes
+        sessionStorage.setItem('ice_co_checkout', JSON.stringify(formData));
+        document.getElementById('session-status').innerText = 'Session data: saved ✓';
+    }
+
+    // Restore form data from sessionStorage on page load
+    function restoreFromSession() {
+        // sessionStorage.getItem — returns null if tab was closed and reopened
+        const saved = sessionStorage.getItem('ice_co_checkout');
+
+        if (saved) {
+            const data = JSON.parse(saved);
+            document.getElementById('first-name').value = data.firstName || '';
+            document.getElementById('last-name').value  = data.lastName  || '';
+            document.getElementById('email').value      = data.email     || '';
+            document.getElementById('address').value    = data.address   || '';
+            document.getElementById('city').value       = data.city      || '';
+            document.getElementById('pincode').value    = data.pincode   || '';
+
+            if (data.delivery && data.delivery !== 'standard') {
+                const radio = document.querySelector(`input[value="${data.delivery}"]`);
+                if (radio) {
+                    radio.checked = true;
+                    const label = radio.closest('.delivery-option');
+                    selectDelivery(data.delivery, label);
+                }
+            }
+
+            document.getElementById('session-status').innerText = 'Session data: restored from sessionStorage ✓';
+        } else {
+            // No session data — show banner if localStorage cart exists
+            // (means user closed tab and came back — session was wiped)
+            const cart = JSON.parse(localStorage.getItem('ice_co_cart')) || {};
+            if (Object.keys(cart).length > 0 && !sessionStorage.getItem('_fresh_visit')) {
+                document.getElementById('session-cleared-banner').style.display = 'block';
+            }
+            document.getElementById('session-status').innerText = 'Session data: none (fill the form above)';
+        }
+
+        // Mark this as a fresh visit so banner doesn't show on first load
+        sessionStorage.setItem('_fresh_visit', '1');
+    }
+
+    // ════════════════════════════════════════
+    //  DELIVERY OPTION SELECTION
+    // ════════════════════════════════════════
+    function selectDelivery(type, labelEl) {
+        document.querySelectorAll('.delivery-option').forEach(l => l.classList.remove('selected'));
+        if (labelEl) labelEl.classList.add('selected');
+
+        selectedDelivery = type;
+        deliveryFee = type === 'express' ? 4.99 : 0;
+
+        saveToSession();
+        renderOrderSummary();
+    }
+
+    // ════════════════════════════════════════
+    //  PLACE ORDER
+    // ════════════════════════════════════════
+    function placeOrder() {
+        const first = document.getElementById('first-name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const address = document.getElementById('address').value.trim();
+
+        if (!first || !email || !address) {
+            alert("Please fill in at least your name, email, and address to proceed.");
+            return;
+        }
+
+        const cart = JSON.parse(localStorage.getItem('ice_co_cart')) || {};
+        if (Object.keys(cart).length === 0) {
+            alert("Your cart is empty! Add some items first.");
+            return;
+        }
+
+        // Show success overlay with customer name from sessionStorage
+        const sessionData = JSON.parse(sessionStorage.getItem('ice_co_checkout')) || {};
+        document.getElementById('success-name').innerText = sessionData.firstName || 'there';
+        document.getElementById('success-overlay').classList.add('active');
+    }
+
+    function clearOrderAfterSuccess() {
+        // Clear localStorage cart after successful order
+        localStorage.removeItem('ice_co_cart');
+        // Clear sessionStorage checkout data
+        sessionStorage.removeItem('ice_co_checkout');
+    }
+
+    // ════════════════════════════════════════
+    //  INIT
+    // ════════════════════════════════════════
+    restoreFromSession();      // Try to restore form from sessionStorage
+    renderOrderSummary();      // Load order summary from localStorage
+    // Mark first delivery option as selected visually
+    document.querySelector('.delivery-option').classList.add('selected');
+</script>
+</body>
+</html>

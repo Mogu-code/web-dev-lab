@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICE CO. | Your Scoop Bag</title>
+    <style>
+        :root {
+            --sky-blue: #A2D2FF;
+            --lemon: #FFD966;
+            --strawberry: #FF85A2;
+            --cream: #FFF9F0;
+            --black: #000000;
+            --white: #ffffff;
+            --border: 4px solid var(--black);
+            --shadow: 8px 8px 0px var(--black);
+        }
+
+        * { box-sizing: border-box; border-radius: 0 !important; transition: all 0.2s ease; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; background: var(--cream); color: var(--black); }
+        h1, h2, h3 { text-transform: uppercase; margin: 0; font-weight: 900; }
+
+        .app-container { display: flex; flex-direction: column; min-height: 100vh; }
+        main { flex: 1; padding: 60px 5%; }
+
+        header {
+            background: var(--white); border-bottom: var(--border);
+            padding: 0 5%; height: 80px;
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 2000;
+        }
+        .logo { font-size: 2rem; font-weight: 900; letter-spacing: -2px; text-decoration: none; color: var(--black); }
+        .nav-links { display: flex; align-items: center; height: 100%; }
+        .nav-links a {
+            text-decoration: none; color: var(--black); font-weight: 900;
+            text-transform: uppercase; padding: 0 20px;
+            height: 100%; display: flex; align-items: center;
+            border-left: var(--border);
+        }
+        .nav-links a:last-child { border-right: var(--border); }
+        .nav-links a:hover { background: var(--strawberry); color: white; }
+        .cart-trigger { position: relative; cursor: pointer; padding: 10px; font-weight: 900; text-decoration: none; color: var(--black); background: var(--strawberry); }
+        .cart-badge { position: absolute; top: -5px; right: -5px; background: var(--black); color: var(--white); padding: 2px 6px; font-size: 0.7rem; }
+
+        /* Cart layout */
+        .section-title { font-size: 3rem; margin-bottom: 40px; text-align: center; }
+        .cart-container { max-width: 1000px; margin: 0 auto; }
+        .cart-table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
+        .cart-header { border-bottom: var(--border); text-align: left; }
+        .cart-header th { padding: 20px; text-transform: uppercase; font-weight: 900; }
+        .cart-row { border-bottom: 2px solid var(--black); }
+        .cart-row td { padding: 20px; vertical-align: middle; }
+        .qty-controls { display: flex; align-items: center; gap: 15px; }
+        .qty-btn { width: 35px; height: 35px; background: var(--black); color: white; border: none; cursor: pointer; font-weight: 900; font-size: 1rem; }
+        .qty-btn:hover { background: var(--strawberry); }
+        .remove-btn { color: red; cursor: pointer; font-weight: bold; text-decoration: underline; background: none; border: none; font-size: 0.9rem; }
+        .remove-btn:hover { color: darkred; }
+
+        .cart-summary {
+            background: var(--white); border: var(--border); padding: 40px;
+            width: 400px; margin-left: auto;
+        }
+        .cta-main {
+            background: var(--black); color: white; padding: 20px 40px;
+            font-weight: 900; text-transform: uppercase;
+            cursor: pointer; border: none; font-size: 1rem; display: block; text-align: center; text-decoration: none;
+        }
+        .cta-main:hover { transform: translate(-4px, -4px); box-shadow: var(--shadow); background: var(--strawberry); }
+        .cta-alt { background: var(--white); color: var(--black); border: var(--border); }
+        .cta-alt:hover { color: white; }
+
+        footer {
+            background: var(--black); color: white; padding: 80px 5% 40px;
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 50px;
+        }
+        footer h3 { color: var(--lemon); margin-bottom: 20px; }
+        footer ul { list-style: none; padding: 0; }
+        footer li { margin-bottom: 12px; cursor: pointer; color: #aaa; }
+        footer li:hover { color: var(--white); }
+        .newsletter input { width: 100%; padding: 15px; border: none; margin-bottom: 10px; }
+
+        /* Storage demo callout */
+        .storage-note {
+            background: var(--lemon); border: var(--border); padding: 16px 24px;
+            font-size: 0.85rem; margin-bottom: 40px; max-width: 1000px; margin-left: auto; margin-right: auto;
+        }
+        .storage-note strong { font-size: 1rem; }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <header>
+        <a class="logo" href="products.html">ICE CO.</a>
+        <nav class="nav-links">
+            <a href="products.html">Home</a>
+            <a href="products.html">Shop All</a>
+        </nav>
+        <a class="cart-trigger" href="cart.html">
+            BAG <span id="cart-count-badge" class="cart-badge">0</span>
+        </a>
+    </header>
+
+    <main>
+        <h1 class="section-title">Your Scoop Bag</h1>
+
+        <!-- 📦 localStorage demo note -->
+        <div class="storage-note">
+            <strong>📦 localStorage in action:</strong> Your cart is saved using
+            <code>localStorage.setItem('ice_co_cart', ...)</code>. 
+            It persists even if you close the tab or browser and come back later — 
+            that's the key difference from sessionStorage.
+        </div>
+
+        <div class="cart-container">
+            <table class="cart-table">
+                <thead class="cart-header">
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items-body"></tbody>
+            </table>
+
+            <div class="cart-summary">
+                <div style="display: flex; justify-content: space-between; font-size: 1.5rem; font-weight: 900; margin-bottom: 20px;">
+                    <span>GRAND TOTAL</span>
+                    <span>$<span id="cart-grand-total">0.00</span></span>
+                </div>
+                <a href="checkout.html" class="cta-main" id="checkout-btn" style="width:100%; margin-bottom:10px;">Proceed to Checkout</a>
+                <button class="cta-main cta-alt" style="width:100%; margin-bottom:10px;" onclick="saveReceipt()">Save Receipt (.txt)</button>
+                <button onclick="clearCart()" style="width:100%; background:none; border:none; margin-top:10px; cursor:pointer; text-decoration:underline; font-weight: bold;">Empty Bag</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <h3>ICE CO.</h3>
+            <p>Handcrafted Ice Creams & Milkshakes.<br>Designed for the digital age.</p>
+        </div>
+        <div>
+            <h3>Explore</h3>
+            <ul>
+                <li onclick="location.href='products.html'">Shop All</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Help</h3>
+            <ul><li>Shipping</li><li>Track Order</li><li>Wholesale</li></ul>
+        </div>
+        <div class="newsletter">
+            <h3>Stay Cold</h3>
+            <input type="email" placeholder="Email Address">
+            <button class="cta-main" style="width:100%; font-size:0.8rem; padding:10px;">Join the List</button>
+        </div>
+    </footer>
+</div>
+
+<script>
+    /* =============================================
+       CART.HTML — ICE CO. CART PAGE
+       Uses: localStorage.getItem() to read cart
+       ============================================= */
+
+    const products = [
+        { id: 1,  name: "Sunset Mango",      price: 5.50, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrL2L_7vkT-yes0urtqgyWDmAD_hcaSHcErg&s" },
+        { id: 2,  name: "Berry Blast",       price: 4.75, img: "https://storage.instadukan.com/media/M_Tt_N8wd_baf7f81c7f.jpg" },
+        { id: 3,  name: "Wild Pistachio",    price: 6.00, img: "https://i0.wp.com/cookingfromheart.com/wp-content/uploads/2022/03/Pistachio-Ice-Cream-2.jpg?w=684&ssl=1" },
+        { id: 4,  name: "Midnight Choco",    price: 5.00, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROy5_4hG-sA3_enKiTojs1S7O2GAqUSCrVbQ&s" },
+        { id: 5,  name: "Cloud Vanilla",     price: 4.00, img: "https://www.sixsistersstuff.com/wp-content/uploads/2021/05/Homemade-Vanilla-Ice-Cream.jpg" },
+        { id: 6,  name: "Minty Fresh",       price: 5.25, img: "https://icecreamfromscratch.com/wp-content/uploads/2023/02/Andes-Ice-Cream-1.2-720x720.jpg" },
+        { id: 7,  name: "Sea Salt Choco",    price: 5.75, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9e_UQ7fqrG0dW-djFepowLOprvf5rlb4U_A&s" },
+        { id: 8,  name: "Coconut Dream",     price: 5.50, img: "https://www.wholesomeyum.com/wp-content/uploads/2022/06/wholesomeyum-Coconut-Milk-Ice-Cream-21.jpg" },
+        { id: 9,  name: "Almond Crunch",     price: 6.25, img: "https://static.toiimg.com/thumb/53520122.cms?width=1200&height=900" },
+        { id: 10, name: "Lemon Sorbet",      price: 4.50, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwXIR_o8NG1mWCXYw4s0aSAiqgF0clng9OOw&s" },
+        { id: 11, name: "Strawberry Silk",   price: 5.50, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjyR-Mj6YkWMirdjgg23qm85JECmuEMUbgEg&s" },
+        { id: 12, name: "Matcha Zen",        price: 6.50, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS16qH2du-YSuLJXSJZ462p6pIQMVq45OrXTg&s" },
+        { id: 13, name: "Oreo Titan",        price: 8.50, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-jlCt-_0bF63Gx8roRVq6SsQ0A-hKNXjh2Q&s" },
+        { id: 14, name: "Strawberry Velvet", price: 7.50, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE-1kaxr9oPJyf4y89AHSdj137z1ELgk0rpQ&s" },
+        { id: 15, name: "Mango Monsoon",     price: 8.00, img: "https://srichennaibakerykingandsweets.com/wp-content/uploads/2025/07/mango-milk-shake.jpg" },
+        { id: 16, name: "Choco Fudge",       price: 8.25, img: "https://lh3.googleusercontent.com/proxy/TwhePcmVfCvzUWWwwZYRH446jSsQzZybuqJeZDQnDx3kwtDg_TyCesiTYuKozRhFIVtNX60iIWjTa8B1HBZIfGp4ehGX5bmiqVIM6I5GNQ" },
+        { id: 17, name: "Vanilla Caramel",   price: 7.00, img: "https://cdn.foodfanatic.com/uploads/2019/05/salted-caramel-milkshake-image-683x1024.jpg" },
+        { id: 18, name: "Banana Nut",        price: 7.75, img: "https://www.crazyvegankitchen.com/wp-content/uploads/2021/07/banana-milkshake4.jpeg" },
+        { id: 19, name: "Watermelon Ice",    price: 3.50, img: "https://www.watermelon.org/wp-content/uploads/2020/03/Layered-Watermelon-Popsicles_2016.jpg" },
+        { id: 20, name: "Grape Chill",       price: 3.50, img: "https://www.shutterstock.com/image-photo/grape-popsicles-bowl-ice-cubes-260nw-2150621453.jpg" },
+        { id: 21, name: "Lime Zing",         price: 3.00, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV16IGiX5ASgyubdoS5vpPlKn6xe8qta0DAA&s" },
+        { id: 22, name: "Berry Frozen",      price: 4.00, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi-aGw_aJtVF5kNF9j-waRS-iz38KLukcvkw&s" },
+        { id: 23, name: "Orange Pop",        price: 3.25, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsA5EsuGH4zHUtZ8nzoTxAPX6Q6ByVbTlIcA&s" },
+        { id: 24, name: "Rainbow Blast",     price: 4.50, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVZNn7D-B-RK3Sir-rrkr5pYtqZ5J8RJWjpw&s" }
+    ];
+
+    // ── Read cart from localStorage (persists across sessions) ──
+    let cart = JSON.parse(localStorage.getItem('ice_co_cart')) || {};
+
+    function saveCart() {
+        // localStorage.setItem — data stays until explicitly cleared
+        localStorage.setItem('ice_co_cart', JSON.stringify(cart));
+        updateBadge();
+    }
+
+    function updateBadge() {
+        const count = Object.values(cart).reduce((a, b) => a + b, 0);
+        document.getElementById('cart-count-badge').innerText = count;
+    }
+
+    // ── Quantity update ──
+    function updateQty(id, change) {
+        cart[id] = (cart[id] || 0) + change;
+        if (cart[id] <= 0) delete cart[id];
+        saveCart();
+        renderCartPage();
+    }
+
+    // ── Remove individual item ──
+    function removeFromCart(id) {
+        delete cart[id];
+        saveCart();
+        renderCartPage();
+    }
+
+    // ── Clear entire cart ──
+    function clearCart() {
+        if (confirm("Empty your entire scoop bag?")) {
+            cart = {};
+            saveCart();
+            renderCartPage();
+        }
+    }
+
+    // ── Render cart table via DOM manipulation ──
+    function renderCartPage() {
+        const tbody = document.getElementById('cart-items-body');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const keys = Object.keys(cart);
+
+        if (keys.length === 0) {
+            // DOM manipulation: replace table content with empty state message
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="5" style="text-align:center; padding: 60px;">
+                        <h3 style="margin-bottom:20px;">Your bag is empty.</h3>
+                        <a href="products.html" class="cta-main" style="display:inline-block;">Go Shopping</a>
+                    </td>
+                </tr>`;
+            document.getElementById('cart-grand-total').innerText = "0.00";
+            checkoutBtn.style.opacity = "0.4";
+            checkoutBtn.style.pointerEvents = "none";
+            return;
+        }
+
+        checkoutBtn.style.opacity = "1";
+        checkoutBtn.style.pointerEvents = "auto";
+
+        let total = 0;
+
+        // DOM manipulation: build rows dynamically from localStorage data
+        tbody.innerHTML = keys.map(id => {
+            const p = products.find(prod => prod.id == id);
+            if (!p) return '';
+            const subtotal = p.price * cart[id];
+            total += subtotal;
+            return `
+                <tr class="cart-row">
+                    <td>
+                        <div style="display:flex; align-items:center; gap:15px;">
+                            <div style="width:60px; height:60px; border:2px solid black; background-image:url('${p.img}'); background-size:cover; flex-shrink:0;"></div>
+                            <strong>${p.name}</strong>
+                        </div>
+                    </td>
+                    <td>$${p.price.toFixed(2)}</td>
+                    <td>
+                        <div class="qty-controls">
+                            <button class="qty-btn" onclick="updateQty(${id}, -1)">−</button>
+                            <span style="font-weight:900; min-width:20px; text-align:center;">${cart[id]}</span>
+                            <button class="qty-btn" onclick="updateQty(${id}, 1)">+</button>
+                        </div>
+                    </td>
+                    <td><strong>$${subtotal.toFixed(2)}</strong></td>
+                    <td><button class="remove-btn" onclick="removeFromCart(${id})">REMOVE</button></td>
+                </tr>`;
+        }).join('');
+
+        // DOM manipulation: update total display
+        document.getElementById('cart-grand-total').innerText = total.toFixed(2);
+    }
+
+    // ── Save receipt as .txt ──
+    async function saveReceipt() {
+        if (Object.keys(cart).length === 0) return alert("Nothing to save!");
+        let text = "ICE CO. OFFICIAL ORDER RECEIPT\n================================\n\n";
+        Object.keys(cart).forEach(id => {
+            const p = products.find(prod => prod.id == id);
+            text += `${p.name.padEnd(22)} x${cart[id]}  $${(p.price * cart[id]).toFixed(2)}\n`;
+        });
+        text += "\n--------------------------------\n";
+        text += `GRAND TOTAL: $${document.getElementById('cart-grand-total').innerText}\n`;
+        text += "\nThank you for choosing ICE CO. Stay Cold.";
+        try {
+            const handle = await window.showSaveFilePicker({ suggestedName: "ice-co-receipt.txt" });
+            const writable = await handle.createWritable();
+            await writable.write(text);
+            await writable.close();
+        } catch (e) { console.log("Save cancelled or not supported."); }
+    }
+
+    // ── Init ──
+    renderCartPage();
+    updateBadge();
+</script>
+</body>
+</html>

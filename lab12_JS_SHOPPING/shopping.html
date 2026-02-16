@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICE CO. | Handcrafted Brutalist Scoops</title>
+    <style>
+        :root {
+            --sky-blue: #A2D2FF;
+            --lemon: #FFD966;
+            --strawberry: #FF85A2;
+            --cream: #FFF9F0;
+            --chocolate: #634832;
+            --black: #000000;
+            --white: #ffffff;
+            --border: 4px solid var(--black);
+            --shadow: 8px 8px 0px var(--black);
+        }
+
+        /* --- Global Reset & Brutalist Core --- */
+        * { box-sizing: border-box; border-radius: 0 !important; transition: all 0.2s ease; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            background-color: var(--cream);
+            color: var(--black);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { text-transform: uppercase; margin: 0; font-weight: 900; }
+
+        /* --- Layout --- */
+        .app-container { display: flex; flex-direction: column; min-height: 100vh; }
+        main { flex: 1; }
+
+        /* --- Navigation --- */
+        header {
+            background: var(--white);
+            border-bottom: var(--border);
+            padding: 0 5%;
+            height: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 2000;
+        }
+
+        .logo { font-size: 2rem; cursor: pointer; letter-spacing: -2px; }
+        
+        .nav-links { display: flex; align-items: center; height: 100%; }
+        .nav-links a { 
+            text-decoration: none; color: var(--black); font-weight: 900; 
+            text-transform: uppercase; padding: 0 20px; cursor: pointer; 
+            height: 100%; display: flex; align-items: center;
+            border-left: var(--border);
+        }
+        .nav-links a:last-child { border-right: var(--border); }
+        .nav-links a:hover, .nav-links a.active { background: var(--strawberry); color: white; }
+
+        /* Cart Icon & Badge */
+        .cart-trigger { position: relative; cursor: pointer; padding: 10px; font-weight: 900; }
+        .cart-badge {
+            position: absolute; top: -5px; right: -5px;
+            background: var(--black); color: var(--white);
+            padding: 2px 6px; font-size: 0.7rem;
+        }
+
+        /* --- Page Management --- */
+        .page-content { display: none; padding: 60px 5%; animation: fadeIn 0.4s ease-out; }
+        .page-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: var(--sky-blue);
+            border: var(--border);
+            padding: 100px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            margin-bottom: 80px;
+        }
+        .hero-text h1 { font-size: 5rem; line-height: 0.85; margin-bottom: 20px; }
+        .hero-text p { font-size: 1.5rem; font-weight: bold; margin-bottom: 30px; max-width: 500px; }
+        .hero-visual { font-size: 15rem; filter: drop-shadow(10px 10px 0 var(--black)); }
+
+        .btn-group { display: flex; gap: 20px; }
+        .cta-main {
+            background: var(--black); color: white; padding: 20px 40px;
+            text-decoration: none; font-weight: 900; text-transform: uppercase;
+            cursor: pointer; border: none; font-size: 1rem;
+        }
+        .cta-main:hover { transform: translate(-4px, -4px); box-shadow: var(--shadow); background: var(--strawberry); }
+        .cta-alt { background: var(--white); border: var(--border); }
+
+        /* --- Best Sellers & Grids --- */
+        .section-title { font-size: 3rem; margin-bottom: 40px; text-align: center; }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .product-card {
+            background: var(--white); border: var(--border);
+            display: flex; flex-direction: column;
+            position: relative;
+        }
+        .product-card:hover { transform: translate(-8px, -8px); box-shadow: var(--shadow); }
+        .product-img { height: 300px; background-size: cover; background-position: center; border-bottom: var(--border); }
+        .product-info { padding: 20px; flex-grow: 1; }
+        .product-cat { font-weight: bold; color: var(--strawberry); text-transform: uppercase; font-size: 0.8rem; }
+        .product-price { font-weight: 900; font-size: 1.2rem; margin-top: 10px; }
+
+        /* --- Category Cards --- */
+        .category-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 60px 0; }
+        .cat-card {
+            background: var(--lemon); border: var(--border); padding: 40px 20px;
+            text-align: center; cursor: pointer; font-weight: 900;
+        }
+        .cat-card:nth-child(2) { background: var(--strawberry); }
+        .cat-card:nth-child(3) { background: var(--sky-blue); }
+        .cat-card:nth-child(4) { background: #bdfcc9; }
+        .cat-card:hover { transform: scale(1.05); }
+
+        /* --- Why Choose Us --- */
+        .why-us { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin: 80px 0; }
+        .why-box { text-align: center; }
+        .why-icon { font-size: 3rem; margin-bottom: 15px; }
+
+        /* --- Promo Banner --- */
+        .promo-banner {
+            background: var(--black); color: var(--white); padding: 40px;
+            text-align: center; margin: 80px 0; border: var(--border);
+        }
+
+        /* --- Cart Page --- */
+        .cart-container { max-width: 1000px; margin: 0 auto; }
+        .cart-table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
+        .cart-header { border-bottom: var(--border); text-align: left; }
+        .cart-header th { padding: 20px; text-transform: uppercase; }
+        .cart-row { border-bottom: 2px solid var(--black); }
+        .cart-row td { padding: 20px; }
+        .qty-controls { display: flex; align-items: center; gap: 15px; }
+        .qty-btn { width: 35px; height: 35px; background: var(--black); color: white; border: none; cursor: pointer; font-weight: 900; }
+        .remove-btn { color: red; cursor: pointer; font-weight: bold; text-decoration: underline; background: none; border: none; }
+        
+        .cart-summary {
+            background: var(--white); border: var(--border); padding: 40px;
+            width: 400px; margin-left: auto;
+        }
+
+        /* --- Notifications --- */
+        #toast {
+            position: fixed; bottom: 30px; right: 30px;
+            background: var(--black); color: white; padding: 20px 40px;
+            font-weight: 900; border: 4px solid var(--strawberry);
+            display: none; z-index: 3000;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--black); color: white; padding: 80px 5% 40px;
+            display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 50px;
+        }
+        footer h3 { color: var(--lemon); margin-bottom: 20px; }
+        footer ul { list-style: none; padding: 0; }
+        footer li { margin-bottom: 12px; cursor: pointer; color: #aaa; }
+        footer li:hover { color: var(--white); }
+        .newsletter input { width: 100%; padding: 15px; border: none; margin-bottom: 10px; }
+
+    </style>
+</head>
+<body>
+
+<div id="toast">ADDED TO SCOOP BAG! 🍦</div>
+
+<div class="app-container">
+    <header>
+        <div class="logo" onclick="showPage('home')">ICE CO.</div>
+        <nav class="nav-links">
+            <a onclick="showPage('home')" id="nav-home">Home</a>
+            <a onclick="showPage('shop')" id="nav-shop">Shop All</a>
+            <a onclick="showPage('about')" id="nav-about">Our Story</a>
+        </nav>
+        <div class="cart-trigger" onclick="showPage('cartPage')">
+            BAG <span id="cart-count-badge" class="cart-badge">0</span>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="page-content active">
+            <div class="hero">
+                <div class="hero-text">
+                    <h1>HANDCRAFTED<br>ICE CREAMS &<br>MILKSHAKES</h1>
+                    <p>Brutalist aesthetics meets artisan flavors. No rounded corners, just pure taste.</p>
+                    <div class="btn-group">
+                        <button class="cta-main" onclick="filterCategory('Dairy Ice Cream')">Shop Ice Cream</button>
+                        <button class="cta-main cta-alt" onclick="filterCategory('Milkshakes')">Shop Shakes</button>
+                    </div>
+                </div>
+                <div class="hero-visual">🍦</div>
+            </div>
+
+            <h2 class="section-title">Fan Favorites</h2>
+            <div class="product-grid" id="grid-featured"></div>
+
+            <div class="category-row">
+                <div class="cat-card" onclick="filterCategory('Dairy Ice Cream')">ICE CREAM TUBS</div>
+                <div class="cat-card" onclick="filterCategory('Vegan Ice cream')">VEGAN SCOOPS</div>
+                <div class="cat-card" onclick="filterCategory('Popsicles')">POPSICLES</div>
+                <div class="cat-card" onclick="filterCategory('Milkshakes')">MILKSHAKES</div>
+            </div>
+
+            <div class="why-us">
+                <div class="why-box"><div class="why-icon">🌿</div><h3>Fresh Ingredients</h3></div>
+                <div class="why-box"><div class="why-icon">🐄</div><h3>Handmade Daily</h3></div>
+                <div class="why-box"><div class="why-icon">⚡</div><h3>Fast Delivery</h3></div>
+                <div class="why-box"><div class="why-icon">🌱</div><h3>Vegan Friendly</h3></div>
+            </div>
+
+            <div class="promo-banner">
+                <h2 style="font-size: 3rem;">BUY 2 GET 1 FREE</h2>
+                <p>Weekend special on all Popsicles. Use code: COLDSTEAL</p>
+            </div>
+
+            <h2 class="section-title">Customer Words</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center; margin-bottom: 60px;">
+                <div style="border: 3px solid black; padding: 20px; background: white;">"The sharpest mint chip I've ever had." - <strong>Alex P.</strong></div>
+                <div style="border: 3px solid black; padding: 20px; background: white;">"Finally, a website that matches my soul." - <strong>Jordan K.</strong></div>
+                <div style="border: 3px solid black; padding: 20px; background: white;">"Milkshakes are literally architectural." - <strong>Sam T.</strong></div>
+            </div>
+        </section>
+
+        <section id="shop" class="page-content">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px; border-bottom: 4px solid black; padding-bottom: 20px;">
+                <h1 style="font-size: 4rem;" id="shop-title">Shop All</h1>
+                <div class="btn-group">
+                    <button class="qty-btn" style="width: auto; padding: 5px 15px;" onclick="filterCategory('all')">All</button>
+                    <button class="qty-btn" style="width: auto; padding: 5px 15px;" onclick="filterCategory('Dairy Ice Cream')">Dairy</button>
+                    <button class="qty-btn" style="width: auto; padding: 5px 15px;" onclick="filterCategory('Vegan Ice cream')">Vegan</button>
+                    <button class="qty-btn" style="width: auto; padding: 5px 15px;" onclick="filterCategory('Milkshakes')">Shakes</button>
+                </div>
+            </div>
+            <div class="product-grid" id="grid-shop"></div>
+        </section>
+
+        <section id="cartPage" class="page-content">
+            <h1 class="section-title">Your Scoop Bag</h1>
+            <div class="cart-container">
+                <table class="cart-table">
+                    <thead class="cart-header">
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items-body">
+                        </tbody>
+                </table>
+
+                <div class="cart-summary">
+                    <div style="display: flex; justify-content: space-between; font-size: 1.5rem; font-weight: 900; margin-bottom: 20px;">
+                        <span>GRAND TOTAL</span>
+                        <span>$<span id="cart-grand-total">0.00</span></span>
+                    </div>
+                    <button class="cta-main" style="width: 100%; margin-bottom: 10px;">Proceed to Checkout</button>
+                    <button class="cta-main cta-alt" style="width: 100%;" onclick="saveReceipt()">Save Receipt (.txt)</button>
+                    <button onclick="clearCart()" style="width:100%; background:none; border:none; margin-top:20px; cursor:pointer; text-decoration:underline;">Empty Bag</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="page-content">
+            <h1 style="font-size: 5rem;">LIFE HAS EDGES.<br>SO DOES OUR ICE CREAM.</h1>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 40px;">
+                <p style="font-size: 1.5rem; line-height: 1.4;">
+                    Since 2026, ICE CO. has rejected the "soft" aesthetic of the dessert world. We believe in bold flavors, intense textures, and high-contrast living. Every scoop is handcrafted in our brutalist lab to ensure maximum density and zero fluff.
+                </p>
+                <div style="background: var(--strawberry); border: 4px solid black; height: 400px;"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div>
+            <h3>ICE CO.</h3>
+            <p>Handcrafted Ice Creams & Milkshakes.<br>Designed for the digital age.</p>
+        </div>
+        <div>
+            <h3>Explore</h3>
+            <ul>
+                <li onclick="showPage('shop')">Shop All</li>
+                <li onclick="filterCategory('Milkshakes')">Milkshakes</li>
+                <li onclick="filterCategory('Popsicles')">Popsicles</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Help</h3>
+            <ul>
+                <li>Shipping</li>
+                <li>Track Order</li>
+                <li>Wholesale</li>
+            </ul>
+        </div>
+        <div class="newsletter">
+            <h3>Stay Cold</h3>
+            <input type="email" placeholder="Email Address">
+            <button class="cta-main" style="width: 100%; font-size: 0.8rem; padding: 10px;">Join the List</button>
+        </div>
+    </footer>
+</div>
+
+<script>
+    /* --- PART 1: PRODUCT DATA --- */
+    const products = [
+        // Dairy Ice Cream
+        { id: 1, name: "Sunset Mango", price: 5.50, cat: "Dairy Ice Cream", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrL2L_7vkT-yes0urtqgyWDmAD_hcaSHcErg&s" },
+        { id: 2, name: "Berry Blast", price: 4.75, cat: "Dairy Ice Cream", img: "https://storage.instadukan.com/media/M_Tt_N8wd_baf7f81c7f.jpg" },
+        { id: 3, name: "Wild Pistachio", price: 6.00, cat: "Dairy Ice Cream", img: "https://i0.wp.com/cookingfromheart.com/wp-content/uploads/2022/03/Pistachio-Ice-Cream-2.jpg?w=684&ssl=1" },
+        { id: 5, name: "Cloud Vanilla", price: 4.00, cat: "Dairy Ice Cream", img: "https://www.sixsistersstuff.com/wp-content/uploads/2021/05/Homemade-Vanilla-Ice-Cream.jpg" },
+        { id: 6, name: "Minty Fresh", price: 5.25, cat: "Dairy Ice Cream", img: "https://icecreamfromscratch.com/wp-content/uploads/2023/02/Andes-Ice-Cream-1.2-720x720.jpg" },
+        { id: 7, name: "Sea Salt Choco", price: 5.75, cat: "Dairy Ice Cream", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9e_UQ7fqrG0dW-djFepowLOprvf5rlb4U_A&s" },
+        
+        // Vegan Ice Cream
+        { id: 4, name: "Midnight Choco", price: 5.00, cat: "Vegan Ice cream", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROy5_4hG-sA3_enKiTojs1S7O2GAqUSCrVbQ&s" },
+        { id: 8, name: "Coconut Dream", price: 5.50, cat: "Vegan Ice cream", img: "https://www.wholesomeyum.com/wp-content/uploads/2022/06/wholesomeyum-Coconut-Milk-Ice-Cream-21.jpg" },
+        { id: 9, name: "Almond Crunch", price: 6.25, cat: "Vegan Ice cream", img: "https://static.toiimg.com/thumb/53520122.cms?width=1200&height=900" },
+        { id: 10, name: "Lemon Sorbet", price: 4.50, cat: "Vegan Ice cream", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwXIR_o8NG1mWCXYw4s0aSAiqgF0clng9OOw&s" },
+        { id: 11, name: "Strawberry Silk", price: 5.50, cat: "Vegan Ice cream", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjyR-Mj6YkWMirdjgg23qm85JECmuEMUbgEg&s" },
+        { id: 12, name: "Matcha Zen", price: 6.50, cat: "Vegan Ice cream", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS16qH2du-YSuLJXSJZ462p6pIQMVq45OrXTg&s" },
+
+        // Milkshakes (NEW)
+        { id: 13, name: "Oreo Titan", price: 8.50, cat: "Milkshakes", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-jlCt-_0bF63Gx8roRVq6SsQ0A-hKNXjh2Q&s" },
+        { id: 14, name: "Strawberry Velvet", price: 7.50, cat: "Milkshakes", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE-1kaxr9oPJyf4y89AHSdj137z1ELgk0rpQ&s" },
+        { id: 15, name: "Mango Monsoon", price: 8.00, cat: "Milkshakes", img: "https://srichennaibakerykingandsweets.com/wp-content/uploads/2025/07/mango-milk-shake.jpg" },
+        { id: 16, name: "Choco Fudge", price: 8.25, cat: "Milkshakes", img: "https://lh3.googleusercontent.com/proxy/TwhePcmVfCvzUWWwwZYRH446jSsQzZybuqJeZDQnDx3kwtDg_TyCesiTYuKozRhFIVtNX60iIWjTa8B1HBZIfGp4ehGX5bmiqVIM6I5GNQ" },
+        { id: 17, name: "Vanilla Caramel", price: 7.00, cat: "Milkshakes", img: "https://cdn.foodfanatic.com/uploads/2019/05/salted-caramel-milkshake-image-683x1024.jpg" },
+        { id: 18, name: "Banana Nut", price: 7.75, cat: "Milkshakes", img: "https://www.crazyvegankitchen.com/wp-content/uploads/2021/07/banana-milkshake4.jpeg" },
+
+        // Popsicles
+        { id: 19, name: "Watermelon Ice", price: 3.50, cat: "Popsicles", img: "https://www.watermelon.org/wp-content/uploads/2020/03/Layered-Watermelon-Popsicles_2016.jpg" },
+        { id: 20, name: "Grape Chill", price: 3.50, cat: "Popsicles", img: "https://www.shutterstock.com/image-photo/grape-popsicles-bowl-ice-cubes-260nw-2150621453.jpg" },
+        { id: 21, name: "Lime Zing", price: 3.00, cat: "Popsicles", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRV16IGiX5ASgyubdoS5vpPlKn6xe8qta0DAA&s" },
+        { id: 22, name: "Berry Frozen", price: 4.00, cat: "Popsicles", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi-aGw_aJtVF5kNF9j-waRS-iz38KLukcvkw&s" },
+        { id: 23, name: "Orange Pop", price: 3.25, cat: "Popsicles", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsA5EsuGH4zHUtZ8nzoTxAPX6Q6ByVbTlIcA&s" },
+        { id: 24, name: "Rainbow Blast", price: 4.50, cat: "Popsicles", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVZNn7D-B-RK3Sir-rrkr5pYtqZ5J8RJWjpw&s" }
+    ];
+
+    /* --- PART 2: STATE & PERSISTENCE --- */
+    let cart = JSON.parse(localStorage.getItem('ice_co_cart_v2')) || {};
+
+    /* --- PART 3: NAVIGATION --- */
+    function showPage(pageId) {
+        document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        
+        document.getElementById(pageId).classList.add('active');
+        if(document.getElementById('nav-' + pageId)) {
+            document.getElementById('nav-' + pageId).classList.add('active');
+        }
+        
+        if (pageId === 'cartPage') renderCartPage();
+        window.scrollTo(0, 0);
+    }
+
+    /* --- PART 4: RENDERING --- */
+    function renderGrids(items = products) {
+        const cardHTML = p => `
+            <div class="product-card">
+                <div class="product-img" style="background-image: url('${p.img}')"></div>
+                <div class="product-info">
+                    <div class="product-cat">${p.cat}</div>
+                    <div style="font-weight:900; font-size:1.4rem; margin: 5px 0;">${p.name}</div>
+                    <div class="product-price">$${p.price.toFixed(2)}</div>
+                </div>
+                <button class="cta-main" style="width:100%" onclick="addToCart(${p.id})">Add to Bag</button>
+            </div>
+        `;
+        
+        // Render to Shop
+        document.getElementById('grid-shop').innerHTML = items.map(cardHTML).join('');
+        // Render to Home (Featured - first 4)
+        document.getElementById('grid-featured').innerHTML = products.slice(0, 4).map(cardHTML).join('');
+    }
+
+    function filterCategory(cat) {
+        showPage('shop');
+        const shopTitle = document.getElementById('shop-title');
+        if (cat === 'all') {
+            renderGrids(products);
+            shopTitle.innerText = "Shop All";
+        } else {
+            const filtered = products.filter(p => p.cat === cat);
+            renderGrids(filtered);
+            shopTitle.innerText = cat;
+        }
+    }
+
+    /* --- PART 5: CART LOGIC --- */
+    function addToCart(id) {
+        cart[id] = (cart[id] || 0) + 1;
+        saveAndSync();
+        
+        // Toast Feedback
+        const t = document.getElementById('toast');
+        t.style.display = 'block';
+        setTimeout(() => t.style.display = 'none', 2000);
+    }
+
+    function updateQty(id, change) {
+        cart[id] += change;
+        if (cart[id] <= 0) delete cart[id];
+        saveAndSync();
+        renderCartPage();
+    }
+
+    function removeFromCart(id) {
+        delete cart[id];
+        saveAndSync();
+        renderCartPage();
+    }
+
+    function clearCart() {
+        if(confirm("Empty your entire scoop bag?")) {
+            cart = {};
+            saveAndSync();
+            renderCartPage();
+        }
+    }
+
+    function saveAndSync() {
+        localStorage.setItem('ice_co_cart_v2', JSON.stringify(cart));
+        updateBadge();
+    }
+
+    function updateBadge() {
+        const count = Object.values(cart).reduce((a, b) => a + b, 0);
+        document.getElementById('cart-count-badge').innerText = count;
+    }
+
+    function renderCartPage() {
+        const tbody = document.getElementById('cart-items-body');
+        const keys = Object.keys(cart);
+        
+        if (keys.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 40px;"><h3>Your bag is empty.</h3><button class="cta-main" onclick="showPage('shop')">Go Shopping</button></td></tr>`;
+            document.getElementById('cart-grand-total').innerText = "0.00";
+            return;
+        }
+
+        let total = 0;
+        tbody.innerHTML = keys.map(id => {
+            const p = products.find(prod => prod.id == id);
+            const subtotal = p.price * cart[id];
+            total += subtotal;
+            return `
+                <tr class="cart-row">
+                    <td>
+                        <div style="display:flex; align-items:center; gap:15px">
+                            <div style="width:60px; height:60px; border:2px solid black; background-image:url('${p.img}'); background-size:cover;"></div>
+                            <strong>${p.name}</strong>
+                        </div>
+                    </td>
+                    <td>$${p.price.toFixed(2)}</td>
+                    <td>
+                        <div class="qty-controls">
+                            <button class="qty-btn" onclick="updateQty(${id}, -1)">-</button>
+                            <span style="font-weight:900">${cart[id]}</span>
+                            <button class="qty-btn" onclick="updateQty(${id}, 1)">+</button>
+                        </div>
+                    </td>
+                    <td><strong>$${subtotal.toFixed(2)}</strong></td>
+                    <td><button class="remove-btn" onclick="removeFromCart(${id})">REMOVE</button></td>
+                </tr>
+            `;
+        }).join('');
+        
+        document.getElementById('cart-grand-total').innerText = total.toFixed(2);
+    }
+
+    /* --- PART 6: FILE SYSTEM --- */
+    async function saveReceipt() {
+        if (Object.keys(cart).length === 0) return alert("Nothing to save!");
+        let text = "ICE CO. OFFICIAL ORDER RECEIPT\n";
+        text += "================================\n\n";
+        Object.keys(cart).forEach(id => {
+            const p = products.find(prod => prod.id == id);
+            text += `${p.name.padEnd(20)} x${cart[id]}  $${(p.price * cart[id]).toFixed(2)}\n`;
+        });
+        text += "\n--------------------------------\n";
+        text += `GRAND TOTAL: $${document.getElementById('cart-grand-total').innerText}\n`;
+        text += "\nThank you for choosing ICE CO. Stay Cold.";
+
+        try {
+            const handle = await window.showSaveFilePicker({ suggestedName: "ice-co-receipt.txt" });
+            const writable = await handle.createWritable();
+            await writable.write(text);
+            await writable.close();
+        } catch (e) {
+            console.log("Save cancelled or not supported");
+        }
+    }
+
+    /* --- INIT --- */
+    renderGrids();
+    updateBadge();
+</script>
+
+</body>
+</html>
