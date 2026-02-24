@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 1 - Q1</title>
+    
+</head>
+<body>
+
+<h2>Task 1 - Q1: Password Complexity Check</h2>
+
+<label>Enter Password:</label><br>
+<input type="text" id="passwordInput" placeholder="Enter password">
+<br>
+<button onclick="validatePassword()">Validate</button>
+
+<div class="result" id="output"></div>
+
+<script>
+
+function validatePassword() {
+
+    let password = document.getElementById("passwordInput").value;
+
+    // Convert string to array
+    let characters = password.split("");
+
+    console.log("===== PASSWORD VALIDATION =====");
+    console.log("Entered Password:", password);
+    console.log("Character Array:", characters);
+
+    // Check at least one symbol
+    let hasSymbol = characters.some(char =>
+        /[!@#$%^&*(),.?":{}|<>]/.test(char)
+    );
+
+    // Check no spaces
+    let noSpaces = characters.every(char => char !== " ");
+
+    console.log("Has Symbol:", hasSymbol);
+    console.log("No Spaces:", noSpaces);
+
+    let resultMessage = `
+        Has At Least One Symbol: ${hasSymbol} <br>
+        No Spaces Present: ${noSpaces}
+    `;
+
+    document.getElementById("output").innerHTML = resultMessage;
+}
+
+</script>
+
+</body>
+</html>

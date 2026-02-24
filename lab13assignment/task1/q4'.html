@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 1 - Q4 (User Input Callback)</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 40px;
+        }
+        input, button {
+            padding: 8px;
+            margin-top: 8px;
+            display: block;
+        }
+        .result {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Task 1 - Q4: processUserData with Callback</h2>
+
+<label>Name:</label>
+<input type="text" id="name">
+
+<label>Age:</label>
+<input type="number" id="age">
+
+<button onclick="startProcessing()">Process Data</button>
+
+<div class="result" id="output"></div>
+
+<script>
+
+// Main processing function
+function processUserData(data, callback) {
+
+    console.log("Processing user data...");
+
+    // Simulating processing
+    let processedData = {
+        ...data,
+        status: "Processed",
+        processedAt: new Date().toLocaleTimeString()
+    };
+
+    // Execute callback after processing
+    callback(processedData);
+}
+
+// Callback function
+function logProcessedData(result) {
+
+    console.log("Processed Data:", result);
+
+    document.getElementById("output").innerHTML =
+        `Name: ${result.name} <br>
+         Age: ${result.age} <br>
+         Status: ${result.status} <br>
+         Time: ${result.processedAt}`;
+}
+
+// Triggered on button click
+function startProcessing() {
+
+    let name = document.getElementById("name").value;
+    let age = document.getElementById("age").value;
+
+    let userData = {
+        name: name,
+        age: age
+    };
+
+    console.log("===== TASK 1 - Q4 =====");
+    console.log("Input Data:", userData);
+
+    processUserData(userData, logProcessedData);
+}
+
+</script>
+
+</body>
+</html>

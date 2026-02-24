@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task 1 - Q3</title>
+</head>
+<body>
+
+<h2>Task 1 - Q3: Unique ID Generator</h2>
+<div id="output"></div>
+
+<script>
+
+function createIDGenerator(start) {
+
+    let currentID = start;
+
+    return function() {
+        currentID++;
+        return currentID;
+    };
+}
+
+let generateID = createIDGenerator(500);
+
+let id1 = generateID();
+let id2 = generateID();
+let id3 = generateID();
+
+console.log("===== TASK 1 - Q3 =====");
+console.log("Generated IDs:", id1, id2, id3);
+
+document.getElementById("output").innerHTML =
+    `Generated IDs: ${id1}, ${id2}, ${id3}`;
+
+</script>
+
+</body>
+</html>
