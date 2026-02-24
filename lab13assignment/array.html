@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Dev Lab 13 - Arrays (Topics 5,6,7)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+            line-height: 1.6;
+        }
+        h2 {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+        .section {
+            margin-bottom: 40px;
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Web Development Lab 13</h1>
+<h3>JavaScript Arrays – Topics 5, 6, 7</h3>
+
+<div id="output"></div>
+
+<script>
+
+let output = "";
+
+
+output += "<h2>Topic 5: Important Array Methods</h2>";
+output += "<div class='section'>";
+
+// A. join()
+let branches = ["CSE", "IT", "ECE", "AI-DS"];
+output += "<b>join():</b> " + branches.join(" | ") + "<br><br>";
+
+// B. concat()
+let core = ["DAA", "DBMS"];
+let labs = ["Web Lab", "AI Lab"];
+let combined = core.concat(labs);
+output += "<b>concat():</b> " + combined + "<br><br>";
+
+// C. slice()
+let syllabus = ["Unit1", "Unit2", "Unit3", "Unit4"];
+let midSemPortion = syllabus.slice(0, 2);
+output += "<b>slice():</b> " + midSemPortion + "<br><br>";
+
+// D. splice()
+let electives = ["Blockchain", "IoT", "AR/VR"];
+electives.splice(1, 1, "Cloud Computing");
+output += "<b>splice():</b> " + electives + "<br><br>";
+
+// E. Sorting numbers properly
+let attendance = [78, 92, 65, 88, 73];
+attendance.sort(function(a, b){
+    return a - b;
+});
+output += "<b>sort():</b> " + attendance + "<br>";
+
+output += "</div>";
+
+
+output += "<h2>Topic 6: Array Iteration Methods</h2>";
+output += "<div class='section'>";
+
+// A. forEach()
+let teams = ["Alpha", "Beta", "Gamma"];
+output += "<b>forEach():</b><br>";
+teams.forEach(function(team, index){
+    output += "Team " + (index+1) + ": " + team + "<br>";
+});
+output += "<br>";
+
+// B. map()
+let marks = [40, 50, 60];
+let graceMarks = marks.map(function(mark){
+    return mark + 5;
+});
+output += "<b>map() - Grace Marks Added:</b> " + graceMarks + "<br><br>";
+
+// C. filter()
+let cgpa = [6.5, 7.8, 8.9, 5.4, 9.1];
+let distinction = cgpa.filter(function(value){
+    return value >= 8.0;
+});
+output += "<b>filter() - Distinction:</b> " + distinction + "<br><br>";
+
+// D. reduce()
+let semesterMarks = [70, 80, 75, 85];
+let total = semesterMarks.reduce(function(sum, value){
+    return sum + value;
+}, 0);
+output += "<b>reduce() - Total Marks:</b> " + total + "<br>";
+
+output += "</div>";
+
+output += "<h2>Topic 7: Multidimensional Arrays</h2>";
+output += "<div class='section'>";
+
+let timetable = [
+    ["DAA", "OS"],
+    ["Web Dev", "AI"],
+    ["CN", "DBMS"]
+];
+
+output += "<b>Complete Timetable:</b><br>";
+for(let i = 0; i < timetable.length; i++){
+    output += "Day " + (i+1) + ": " + timetable[i].join(", ") + "<br>";
+}
+
+output += "<br>";
+output += "<b>Access Specific Element:</b><br>";
+output += "Second Day, First Subject: " + timetable[1][0];
+
+output += "</div>";
+
+
+document.getElementById("output").innerHTML = output;
+
+</script>
+
+</body>
+</html>

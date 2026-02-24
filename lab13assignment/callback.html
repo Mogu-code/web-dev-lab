@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Dev Lab 13 - Callback Hell</title>
+</head>
+<body>
+
+<h2>Callback Hell Demonstration</h2>
+<p>Open Console (F12 → Console)</p>
+
+<script>
+
+console.log("===== CALLBACK HELL DEMO =====");
+
+// Step 1
+function fetchStudent(callback) {
+    setTimeout(() => {
+        console.log("Step 1: Student Data Fetched");
+        callback();
+    }, 1000);
+}
+
+// Step 2
+function verifyAttendance(callback) {
+    setTimeout(() => {
+        console.log("Step 2: Attendance Verified");
+        callback();
+    }, 1000);
+}
+
+// Step 3
+function calculateResult(callback) {
+    setTimeout(() => {
+        console.log("Step 3: Result Calculated");
+        callback();
+    }, 1000);
+}
+
+// Step 4
+function generateCertificate() {
+    setTimeout(() => {
+        console.log("Step 4: Certificate Generated");
+    }, 1000);
+}
+
+
+// ========== CALLBACK HELL STRUCTURE ==========
+
+fetchStudent(function() {
+    verifyAttendance(function() {
+        calculateResult(function() {
+            generateCertificate();
+        });
+    });
+});
+
+</script>
+
+</body>
+</html>

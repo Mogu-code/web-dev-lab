@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Dev Lab 13 - Closures</title>
+</head>
+<body>
+
+<h2>Closures Demonstration</h2>
+<p>Open Console (F12 → Console)</p>
+
+<script>
+
+console.log("===== CLOSURE DEMO =====");
+
+// Outer Function
+function createResultCounter() {
+
+    let count = 0;   // private variable
+
+    return function() {
+        count++;
+        console.log("Result Generated Count:", count);
+    };
+}
+
+// Creating closure
+let resultCounter = createResultCounter();
+
+// Calling multiple times
+resultCounter();
+resultCounter();
+resultCounter();
+
+</script>
+
+</body>
+</html>

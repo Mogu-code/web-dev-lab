@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Dev Lab 13 - Arrow Functions</title>
+</head>
+<body>
+
+<h2>Arrow Functions Demonstration</h2>
+<p>Open Console (F12 → Console) to see output clearly.</p>
+
+<script>
+
+/* ==========================================================
+   🔵 SECTION 1: Basic Arrow Function
+   ========================================================== */
+
+console.log("===== SECTION 1: Basic Arrow Function =====");
+
+const multiply = (a, b) => a * b;
+
+console.log("Multiplication Result:", multiply(5, 4));
+
+
+
+/* ==========================================================
+   🔵 SECTION 2: Arrow with map()
+   ========================================================== */
+
+console.log("\n===== SECTION 2: map() with Arrow =====");
+
+let internalMarks = [50, 60, 70, 80];
+
+console.log("Original Marks Array:", internalMarks);
+
+let graceMarks = internalMarks.map(mark => mark + 5);
+
+console.log("After Adding Grace Marks:", graceMarks);
+
+
+
+/* ==========================================================
+   🔵 SECTION 3: Arrow with filter()
+   ========================================================== */
+
+console.log("\n===== SECTION 3: filter() with Arrow =====");
+
+let cgpa = [6.2, 8.5, 7.1, 9.0, 5.8];
+
+console.log("CGPA Array:", cgpa);
+
+let distinctionStudents = cgpa.filter(value => value >= 8.0);
+
+console.log("Distinction Students:", distinctionStudents);
+
+
+
+/* ==========================================================
+   🔵 SECTION 4: Arrow with reduce()
+   ========================================================== */
+
+console.log("\n===== SECTION 4: reduce() with Arrow =====");
+
+let semesterMarks = [70, 85, 90, 60];
+
+console.log("Semester Marks Array:", semesterMarks);
+
+let totalMarks = semesterMarks.reduce((sum, value) => sum + value, 0);
+
+console.log("Total Marks:", totalMarks);
+
+
+
+/* ==========================================================
+   🔵 SECTION 5: Arrow vs Normal Function Comparison
+   ========================================================== */
+
+console.log("\n===== SECTION 5: Comparison =====");
+
+let attendance = [78, 92, 88, 65];
+
+console.log("Attendance Array:", attendance);
+
+// Normal function
+let eligibleNormal = attendance.filter(function(percent){
+    return percent >= 75;
+});
+
+// Arrow function
+let eligibleArrow = attendance.filter(percent => percent >= 75);
+
+console.log("Eligible (Normal Function):", eligibleNormal);
+console.log("Eligible (Arrow Function):", eligibleArrow);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>every() Demo</title>
+</head>
+<body>
+
+<h2>every() - Check If All Students Have 75% Attendance</h2>
+<p id="output1"></p>
+
+<script>
+
+let attendance = [78, 82, 90, 88, 76];
+
+let allEligible = attendance.every(function(percent){
+    return percent >= 75;
+});
+
+document.getElementById("output1").innerHTML =
+    "Are all students eligible? : " + allEligible;
+
+</script>
+
+</body>
+</html>

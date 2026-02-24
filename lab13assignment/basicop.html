@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Array Demonstration - Web Dev Lab 13</title>
+</head>
+<body>
+
+<h2>JavaScript Array Operations Demo</h2>
+<p id="output"></p>
+
+<script>
+
+    // 1️⃣ Creating an array of student marks
+    let internalMarks = [78, 85, 91, 67, 88];
+
+    let result = "";
+
+    // 2️⃣ Accessing elements
+    result += "First Student Marks: " + internalMarks[0] + "<br>";
+
+    // 3️⃣ Finding length
+    result += "Total Students: " + internalMarks.length + "<br>";
+
+    // 4️⃣ Adding element at end (push)
+    internalMarks.push(95);
+    result += "After Adding New Marks: " + internalMarks + "<br>";
+
+    // 5️⃣ Removing last element (pop)
+    internalMarks.pop();
+    result += "After Removing Last Marks: " + internalMarks + "<br>";
+
+    // 6️⃣ Adding at beginning (unshift)
+    internalMarks.unshift(72);
+    result += "After Adding at Beginning: " + internalMarks + "<br>";
+
+    // 7️⃣ Removing first element (shift)
+    internalMarks.shift();
+    result += "After Removing First Element: " + internalMarks + "<br>";
+
+    // 8️⃣ Looping through array
+    result += "<br>Marks using loop:<br>";
+    for(let i = 0; i < internalMarks.length; i++){
+        result += "Student " + (i+1) + ": " + internalMarks[i] + "<br>";
+    }
+
+    document.getElementById("output").innerHTML = result;
+
+</script>
+
+</body>
+</html>

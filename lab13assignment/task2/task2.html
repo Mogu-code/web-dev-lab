@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Transformation Pipeline</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+        }
+
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: var(--text); padding: 40px 20px; line-height: 1.5; }
+        .wrapper { max-width: 700px; margin: auto; }
+        h1 { text-align: center; color: #0f172a; margin-bottom: 40px; }
+
+        .step-card {
+            background: var(--card);
+            border-left: 5px solid var(--primary);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .step-num {
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .step-title { font-weight: 600; font-size: 1.1rem; margin-bottom: 12px; }
+        
+        code { background: #f1f5f9; padding: 4px 8px; border-radius: 0px; font-family: monospace; font-size: 0.95rem; display: block; overflow-x: auto; white-space: pre-wrap; margin-top: 10px; border: 1px solid #e2e8f0; }
+
+        .highlight { color: #059669; font-weight: bold; }
+
+        .final-report {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 30px;
+            text-align: center;
+            border-radius: 0px;
+            margin-top: 40px;
+        }
+
+        .final-report h3 { margin: 0; font-size: 0.9rem; opacity: 0.8; text-transform: uppercase; }
+        .final-report div { font-size: 2rem; font-weight: 700; margin-top: 10px; color: #60a5fa; }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <h1>Data Processing Steps</h1>
+
+    <div class="step-card">
+        <span class="step-num">Step 01</span>
+        <div class="step-title">Initial Input String</div>
+        <code id="s1-input"></code>
+    </div>
+
+    <div class="step-card">
+        <span class="step-num">Step 02</span>
+        <div class="step-title">Split & Filter "FOOD" Items</div>
+        <p>Using <code>split('|')</code> and <code>startsWith('FOOD')</code>.</p>
+        <code id="s2-filter"></code>
+    </div>
+
+    <div class="step-card">
+        <span class="step-num">Step 03</span>
+        <div class="step-title">Extract Prices & Calculate Subtotal</div>
+        <p>Extracted numerical values and summed them using <code>reduce()</code>.</p>
+        <code id="s3-math"></code>
+    </div>
+
+    <div class="final-report">
+        <h3>Generated Report</h3>
+        <div id="final-output"></div>
+    </div>
+</div>
+
+<script>
+    const rawData = "FOOD>Burger:12.50|TRANSPORT>Uber:25.00|FOOD>Pizza:18.75|SHOPPING>Shirt:35.00|FOOD>Coffee:4.50|TRANSPORT>Bus:2.25";
+    
+    // Step 1: Display Raw
+    document.getElementById('s1-input').textContent = rawData;
+
+    // Step 2: Split and Filter
+    const allRecords = rawData.split('|');
+    const foodRecords = allRecords.filter(r => r.startsWith("FOOD"));
+    document.getElementById('s2-filter').textContent = JSON.stringify(foodRecords, null, 2);
+
+    // Step 3: Math
+    const prices = foodRecords.map(r => parseFloat(r.split(':')[1]));
+    const subtotal = prices.reduce((a, b) => a + b, 0);
+    const tax = subtotal * 0.10;
+    const grandTotal = subtotal + tax;
+    
+    document.getElementById('s3-math').textContent = 
+        `Prices: [${prices.join(', ')}]\nSubtotal: $${subtotal}\nTax (10%): $${tax.toFixed(3)}`;
+
+    // Final Report
+    const reportString = `Total Food Expense: $${grandTotal.toFixed(2)}`;
+    document.getElementById('final-output').textContent = reportString;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>some() Demo</title>
+</head>
+<body>
+
+<h2>some() - Check If Any Student Has Backlog</h2>
+<p id="output2"></p>
+
+<script>
+
+let marks = [72, 65, 38, 81, 90];
+
+let hasBacklog = marks.some(function(score){
+    return score < 40;
+});
+
+document.getElementById("output2").innerHTML =
+    "Is there any backlog? : " + hasBacklog;
+
+</script>
+
+</body>
+</html>

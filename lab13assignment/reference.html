@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reference Error Demo</title>
+</head>
+<body>
+
+<h2>Reference Error Demonstration</h2>
+<p>Open Console (F12 → Console)</p>
+
+<script>
+
+console.log("===== REFERENCE ERROR DEMO =====");
+
+function showMarks() {
+    let marks = 85;
+    console.log("Inside Function:", marks);
+}
+
+showMarks();
+
+// ❌ Trying to access outside scope
+console.log("Outside Function:", marks);
+
+</script>
+
+</body>
+</html>
