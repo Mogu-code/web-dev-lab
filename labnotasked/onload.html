@@ -1,0 +1,38 @@
+<body onload="welcome()">
+
+<script>
+function welcome(){
+    alert("Page Loaded Successfully!");
+}
+function greetStudent(){
+ console.log("Hello "+this.name);
+}
+
+let student={
+ name:"Ashok",
+ marks:85,
+
+ greet:function(){
+  console.log("Hello, my name is "+this.name);
+ }
+};
+
+student.greet();
+let student1={
+ name:"Mokshdaa",
+ greet:greetStudent
+};
+
+let student2={
+ name:"Puneeta",
+ greet:greetStudent
+};
+
+student1.greet();
+student2.greet();
+</script>
+
+
+
+
+

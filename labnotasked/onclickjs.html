@@ -1,0 +1,21 @@
+<button id="btn">Click</button>
+
+<script>
+document.getElementById("btn").onclick=function(){
+    alert("Hello!");
+}
+// setInterval(()=>{
+//  console.log("Hello");
+// },1000);
+let counter={
+ count:0,
+ start:function(){
+  setInterval(()=>{
+   this.count++;
+   console.log(this.count);
+  },1000);
+ }
+}
+counter.start();
+
+</script>

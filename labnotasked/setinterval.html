@@ -1,0 +1,24 @@
+<p id="count">0</p>
+<button onclick="startCounter()">Start</button>
+<button onclick="stopCounter()">Stop</button>
+
+<script>
+let num=0;
+let intervalId;
+
+function startCounter(){
+ intervalId=setInterval(function(){
+     num++;
+     count.innerHTML=num;
+ },1000);
+}
+
+function stopCounter(){
+ clearInterval(intervalId);
+}
+function sayHello(){
+    alert("Hello after 2 sec");
+}
+setTimeout(sayHello,2000);
+
+</script>

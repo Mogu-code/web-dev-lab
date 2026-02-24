@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JavaScript Events Lab</title>
+
+<style>
+body{
+    font-family: Arial;
+    background:#f4f4f4;
+    margin:0;
+}
+header{
+    background:#222;
+    color:white;
+    padding:15px;
+    text-align:center;
+}
+section{
+    background:white;
+    margin:20px;
+    padding:20px;
+    border:1px solid #ccc;
+}
+h2{border-bottom:2px solid #ddd;padding-bottom:5px}
+button{padding:8px 12px;margin:5px}
+input,select{padding:6px;margin:5px}
+#mouseBox{
+    width:150px;height:150px;background:red;margin-top:10px;
+}
+</style>
+</head>
+
+<body onload="pageLoaded()">
+
+<header>
+<h1>JavaScript Event Handling Demonstration</h1>
+</header>
+
+<!-- INTRO EVENT -->
+<section>
+<h2>1. Intro Event (onclick)</h2>
+<button onclick="sayHello()">Click Me</button>
+</section>
+
+<!-- MOUSE EVENTS -->
+<section>
+<h2>2. Mouse Events</h2>
+<div id="mouseBox"
+ onmouseover="changeColor()"
+ onmouseout="resetColor()">
+</div>
+</section>
+
+<!-- KEYBOARD EVENTS -->
+<section>
+<h2>3. Keyboard Events</h2>
+<input type="text" placeholder="Type something"
+ onkeydown="keyDown()"
+ onkeyup="keyUp(this)">
+<p id="keyOutput"></p>
+</section>
+
+<!-- LOAD EVENT -->
+<section>
+<h2>4. Load Event</h2>
+<p id="loadMsg"></p>
+</section>
+
+<!-- CHANGE EVENT -->
+<section>
+<h2>5. Change Event</h2>
+<select onchange="showCountry(this)">
+<option>Select Country</option>
+<option>India</option>
+<option>USA</option>
+</select>
+</section>
+
+<!-- FORM EVENTS -->
+<section>
+<h2>6. Form Submit Event</h2>
+<form onsubmit="return validateForm()">
+<input type="text" id="name" placeholder="Enter Name">
+<button type="submit">Submit</button>
+</form>
+</section>
+
+<!-- FOCUS BLUR -->
+<section>
+<h2>7. Focus & Blur</h2>
+<input type="text" placeholder="Focus me"
+ onfocus="highlight(this)"
+ onblur="normal(this)">
+</section>
+
+<!-- QUERY SELECTOR -->
+<section>
+<h2>8. querySelectorAll()</h2>
+<input type="checkbox" value="HTML">HTML
+<input type="checkbox" value="CSS">CSS
+<input type="checkbox" value="JS">JS
+<br>
+<button onclick="getSkills()">Show Skills</button>
+</section>
+
+<!-- EVENT LISTENER -->
+<section>
+<h2>9. addEventListener()</h2>
+<button id="listenerBtn">Click using EventListener</button>
+</section>
+
+<!-- TIMER EVENTS -->
+<section>
+<h2>10. Timing Events</h2>
+<p id="count">0</p>
+<button onclick="startCounter()">Start</button>
+<button onclick="stopCounter()">Stop</button>
+<button onclick="delayedMsg()">setTimeout</button>
+</section>
+
+<!-- OBJECT + ARROW FUNCTION -->
+<section>
+<h2>11. Object Timer (Arrow Function)</h2>
+<button onclick="counterObj.start()">Start Object Counter (Check Console)</button>
+</section>
+
+<script>
+
+function pageLoaded(){
+    document.getElementById("loadMsg").innerText="Page Loaded Successfully!";
+}
+
+function sayHello(){
+    alert("Button Clicked!");
+}
+
+function changeColor(){ mouseBox.style.background="blue"; }
+function resetColor(){ mouseBox.style.background="red"; }
+
+function keyDown(){ console.log("Key Pressed"); }
+function keyUp(el){ keyOutput.innerText="You typed: "+el.value; }
+
+function showCountry(el){ alert(el.value); }
+
+function validateForm(){
+    if(name.value==""){ alert("Enter name!"); return false; }
+}
+
+function highlight(el){ el.style.background="yellow"; }
+function normal(el){ el.style.background="white"; }
+
+function getSkills(){
+ let skills=document.querySelectorAll('input[type="checkbox"]');
+ let result="";
+ skills.forEach(s=>{ if(s.checked) result+=s.value+" "; });
+ alert(result);
+}
+
+document.getElementById("listenerBtn")
+.addEventListener("click",()=>alert("Event Listener Triggered"));
+
+let num=0,intervalId;
+function startCounter(){
+ intervalId=setInterval(()=>{ count.innerText=++num; },1000);
+}
+function stopCounter(){ clearInterval(intervalId); }
+
+function delayedMsg(){
+ setTimeout(()=>alert("Hello after 2 seconds"),2000);
+}
+
+let counterObj={
+ count:0,
+ start:function(){
+  setInterval(()=>{
+   console.log("Object Count:",++this.count);
+  },1000);
+ }
+}
+
+</script>
+</body>
+</html>
