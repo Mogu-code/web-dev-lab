@@ -1,0 +1,228 @@
+<!-- adding 2 number
+<input id="num1">
+<input id="num2">
+<button onclick="add()">Add</button>
+<p id="result"></p>
+<script>
+    function add(){
+        let a=Number(document.getElementById("num1").value);
+        let b=Number(document.getElementById("num2").value);
+
+        let c=a+b;
+        document.getElementById("result").textContent=`ans is ${c}`;
+    }
+</script> -->
+
+<!-- odd even
+<input id="num1">
+<button onclick="check()">check</button>
+<p id="answer"></p>
+<script>
+    function check(){
+        let a=Number(document.getElementById("num1").value);
+        if (a%2==0) document.getElementById("answer").textContent=`even`;
+        else document.getElementById("answer").textContent=`odd`;
+    }
+</script> -->
+
+<!-- arrow function
+<script>
+    const square=(x)=>{
+        return x*x;
+    }
+    console.log("answer is",square(5));
+    console.log("answer is",square(6));
+    console.log("answer is",square(7));
+    console.log(`answer is ${square(7)}`);
+</script> -->
+
+<!-- array
+<p id="answer"></p>
+<script>
+    let fruit=['app','bab','or'];
+    for(let i=0;i<fruit.length;i++){
+    document.getElementById("answer").innerHTML+=`fruits are ${fruit[i]} `;
+    }
+</script> -->
+
+<!-- array operations
+<p id="answer"></p>
+<button onclick="push6()">push6</button>
+<button onclick="pop()">pop</button>
+<button onclick="shift()">shift</button>
+<button onclick="unshift()">unshift</button>
+
+<script>
+    let arr=[1,2,3,4,5];
+    function push6(){
+        arr.push(6);
+        document.getElementById("answer").innerHTML= arr;
+    }
+    function pop(){
+        arr.pop();
+        document.getElementById("answer").innerHTML= arr;
+    }
+    function shift(){
+        arr.shift();
+        document.getElementById("answer").innerHTML= arr;
+    }
+    function unshift(){
+        arr.unshift(6);
+        document.getElementById("answer").innerHTML= arr;
+    }
+    
+</script>  -->
+
+<!-- object
+<script>
+    let student={
+        name: 'amit',
+        age:5,
+        course:"cse"
+    };
+    console.log(student.name);
+    let ans={
+        name:"yo",
+        greet:function(){
+            return "hi "+ this.name;
+        }
+    };(
+    console.log(ans.greet()));
+</script>  -->
+
+<!-- dom manipulation
+ <p id="demo">Hello</p>
+
+<button onclick="changeText()">Click</button>
+
+<script>
+function changeText(){
+    document.getElementById("demo").textContent = "Welcome to JavaScript";
+}
+</script> -->
+
+<!-- looping in form
+<form id="form" action="action_page.php">
+    <label for="fname">fname</label>
+    <input type="text" id="fname">
+    <label for="lname">lname</label>
+    <input type="text" id="lname">
+    <input type="submit">
+</form>
+<button onclick="display()">try</button>
+<p id="res"></p>
+<script>
+    function display(){
+        let x=document.getElementById("form");
+        let txt="";
+      
+        
+        for(let i=0;i<x.length;i++){
+              if (x.elements[i].value == "") {
+                alert("Please fill out all fields"); // Browser Dialog Box [cite: 83]
+                return false; // Stops the function
+            }
+            txt=txt+x.elements[i].value+"<br>";
+        }
+        document.getElementById("res").innerHTML=txt;
+    }
+    
+</script> -->
+
+<!-- FORM VALIDATION
+<body>
+    <form onsubmit="return validateform()">
+        Name:<input type="text" id="name" ><br>
+        Email:<input type="email" id="email" ><br>
+        Password:<input type="password" id="pwd"><br>
+        Confirm pwd:<input type="password" id="conpwd"><br>
+        Phone:<input type="text" id="phone"><br>
+        Age:<input type="number" id="age"><br>
+        Term accept:<input type="radio" id="term"><br>
+        <input type="submit">
+    </form>
+</body>
+<script>
+    function validateform(){
+        let n=document.getElementById("name").value;
+        let em=document.getElementById("email").value;
+        let pwd=document.getElementById("pwd").value;
+        let confpwd=document.getElementById("conpwd").value;
+        let ph=document.getElementById("phone").value;
+        let ag=document.getElementById("age").value;
+        let term=document.getElementById("term").checked;
+
+        let namepattern=/^[A-Za-z ]+$/;
+        if (n=="" || em==""){
+            alert("cannot be empty"); return false;
+        } 
+        let emailpattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!namepattern.test(n)){ 
+            alert("name must've only letters"); 
+            return false;
+        }
+        if(!emailpattern.test(em)){
+            alert("email must be only letters");
+            return false;
+        }
+        if (pwd.length<6){
+            alert("must be atleast 6");
+            return false;
+        }
+        if (pwd!=confpwd){
+            alert("must be same");
+            return false;
+        }
+        let phonepattern=/^[0-9]{10}$/;
+        if (!phonepattern.test(ph)){
+            alert("must be 10 digits");
+            return false;
+        }
+        if (ag<16){
+            alert("must be more than 16")
+            return false;
+        }
+        if(!term){
+            alert ("must accept");
+            return false;
+        }
+        alert("submitted");
+        return true;
+
+    }
+</script> -->
+<!-- <script>
+    alert("Hello");
+    confirm("Are you sure?");
+    prompt("Enter your name");
+</script> -->
+
+<!-- DOM
+<button onclick="greet('Mokshdaa')">press</button>
+<button onclick="changecolor('red')">pressforcolor</button>
+<script>
+    function greet(name){
+        alert("hello"+name);
+    }
+    function add(a,b){
+        console.log(a+b);
+    }
+    add(5,6);
+    function changecolor(c){
+        document.body.style.backgroundColor=c;
+    }
+    
+
+</script> -->
+
+<p>1</p>
+<p>1</p>
+<p>1</p>
+<p>1</p>
+
+<script>
+    let item=document.querySelectorAll("p");
+    for(var i=0;i<item.length;i++){
+        item[i].style.color="green";
+    }
+</script>

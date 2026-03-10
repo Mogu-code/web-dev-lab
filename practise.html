@@ -1,0 +1,192 @@
+<!-- <html>
+    <body>
+        <label>username:</label>
+        <input id="yo">
+        <button id="sub">Submit</button>
+        <h1 id="yes"></h1>
+        <p id="yess"></p>
+        
+        <script>
+            let username;
+                document.getElementById("sub").onclick=function(){
+                username=document.getElementById("yo").value;
+                document.getElementById("yes").textContent=`Hello ${username}`;
+                console.log(username);
+            }
+            let x=10,price=10.5,name="mok";
+            console.log(`the price is x: ${x}, price: $${price},type:${typeof price},${typeof x}`);
+            console.log(`${typeof name}`);
+            let msg = `the price is x: ${x}, price: $${price}, type:${typeof price}, ${typeof x}`;
+            document.getElementById("yess").textContent = msg;
+            let flag=true
+            console.log(typeof flag,flag);
+            let apple=20,orage=10,carrot=4;
+            let total,veg,fruits;
+            total=apple+orage+carrot
+            console.log(total);
+            total%=2
+            console.log(total);
+            total+=2
+            console.log(total);
+            total++
+            console.log(total);
+            veg=carrot*2
+            fruits=apple+orage
+            console.log(total,veg,fruits);
+
+            let ag1=window.prompt("age will be considered aas string");
+            ag1+=1;
+            console.log(ag1,typeof ag1);
+            ag1-=1;
+            console.log(ag1,typeof ag1);
+            let ag2=Number(window.prompt("age will be considered aas number"));
+            ag2+=1;
+            console.log(ag2,typeof ag2);
+            let x=Number("hi")
+            let y=String("hi")
+            let z=Boolean("hi")
+            console.log(x,y,z);
+            const pi=3.14159;
+            let r;
+            r=window.prompt(`radius`);
+            let circ=2*pi*r;
+            console.log(circ)
+
+        </script>
+    </body>    
+</html> -->
+
+<!-- <html> -->
+    <!-- <style>
+        body{
+            display:flex;
+            justify-content:center;
+            align-items: center;
+
+        }
+        .counter-box{
+            background-color: #a7c9ee;
+            border:2px black solid;
+            padding:25px 35px;
+            text-align:center;
+        }
+    </style> -->
+    <!-- <body>
+        <div class="counter-box">
+            <h1 id="counter">0</h1>
+            <button onclick="decrease()">decrease</button>
+            <button onclick="increase()">increase</button>
+            <button onclick="reset()">reset</button>
+        </div>
+        <script>
+        let count=0;
+        function decrease(){
+            count--;
+            document.getElementById("counter").textContent=count;
+        }
+        function increase(){
+            count++;
+            document.getElementById("counter").textContent=count;
+        }
+        function reset(){
+            count=0;
+            document.getElementById("counter").textContent=count;
+        }
+
+        </script>
+    </body> -->
+    <!-- <html> -->
+<!-- <head>
+<script>
+function toggle(){
+    document.getElementById("butt").src = "button_on.jpg";
+}
+function toggleback(){
+    document.getElementById("butt").src = "button_off.jpg";
+}
+</script>
+</head>
+
+<body>
+<a href="test.html"
+onmouseover="toggle()"
+onmouseout="toggleback()">
+<img id="butt" src="button_off.jpg">
+</a>
+
+</body> -->
+    <!-- <body>
+        <h1 id="result">0</h1>
+        <h1 id="result2">0</h1>
+        <h1 id="result3">0</h1>
+        <button onclick="rolldice()">roll</button>
+
+    </body>
+    <script>
+        
+        function rolldice(){
+            let roll=Math.floor(Math.random()*6)+1
+            document.getElementById("result").textContent=roll;
+            let roll2=Math.floor(Math.random()*6)+1
+            document.getElementById("result2").textContent=roll2;
+            let roll3=Math.floor(Math.random()*6)+1
+            document.getElementById("result3").textContent=roll3;
+        }
+        console.log(Math.PI)
+        console.log(Math.E)
+        let x=3.99
+        let y=2.001
+        console.log(Math.round(x))
+        console.log(Math.round(3.4))
+        console.log(Math.ceil(3.99))
+        console.log(Math.floor(y))
+        console.log(Math.trunc(3.99))
+        console.log(Math.pow(2,3))
+        console.log(Math.sqrt(25));
+
+        console.log(Math.sin(0));
+
+    </script>
+</html> -->
+<html>
+    <head>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <input type="color">
+        <input type="range">
+        <path d="M 50 50 L 150 50" stroke="black" fill="none"/>
+        <input type="text" id="display" disabled><br><br>
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button onclick="append('+')">+</button><br>
+        <path d="M 50 50 L 150 50" stroke="black" fill="none"/>
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+        <button onclick="append('-')">-</button><br><br>
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button>
+        <button onclick="append('*')">*</button><br>
+        <button onclick="append('/')">/</button><br>
+        <button onclick="calculate('=')">=</button><br>
+        <button onclick="clearr('clr')">clr</button><br>
+    </body>
+    <script>
+        let display=document.getElementById("display")
+        function append(value){
+            display.value+=value
+        }
+        function calculate(){
+            display.value=eval(display.value);
+        }
+        function clearr(){
+            display.value="";
+        }
+
+    </script>
+</html>
