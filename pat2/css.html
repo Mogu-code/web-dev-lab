@@ -1,0 +1,120 @@
+<!-- <style>
+    @keyframes moveBox {
+        from {left:0px;}
+        to {left:300px;}
+    }
+    .box{
+        width:100px;
+        height: 200px;
+        border-radius: 5px;
+        background-color: red;
+        animation-name: moveBox;
+        animation-duration: 3s;
+        /* animation-iteration-count: infinite; */
+        position:relative;
+        /* animation-direction: reverse; */
+        animation-fill-mode: both;
+        animation-timing-function: ease-in;
+    }
+    .box:hover{
+animation-play-state: paused;
+}
+</style>
+<div class="box"></div> -->
+<!-- <style>
+    @keyframes moveBox {
+        0% { background:red; }
+        50% { background:yellow; }
+        100% { background:blue; }
+    }
+    .box{
+        width:100px;
+        height: 200px;
+        border-radius: 5px;
+        background-color: red;
+        animation-name: moveBox;
+        animation-duration: 3s;
+        position:relative;
+    }
+</style>
+<div class="box"></div> -->
+
+<!-- <style>
+    .box{
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        transition:1s;
+    }
+    .box:hover{
+        background-color: blue;
+        width: 200px;
+    }
+</style>
+<div class="box"></div> -->
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+.spinner{
+width:50px;
+height:50px;
+border: 6px solid grey;
+border-top:6px blue solid;
+border-radius: 50%;
+animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+
+from{
+transform:rotate(0deg);
+}
+
+to{
+transform:rotate(270deg);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="spinner"></div><br>
+
+
+</body>
+</html> -->
+<head>
+<style>
+    .circle{
+        width:30px;
+        height: 30px;
+        background-color: red;
+    }
+    .box{
+        width:300px;
+        height:300px;
+        border: 2px solid black;
+        position: absolute;
+    }
+</style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        document.getElementById("box").onclick=function(e){
+            let c=document.createElement("div");
+            c.classList.add("circle");
+            c.style.left=e.offsetX+"px";
+c.style.top=e.offsetY+"px";
+            box.appendChild(c);
+        }
+    </script>
+</body>

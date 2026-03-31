@@ -215,6 +215,7 @@ function changeText(){
 
 </script> -->
 
+<!-- dome wiht looping and queryselectorall
 <p>1</p>
 <p>1</p>
 <p>1</p>
@@ -225,4 +226,317 @@ function changeText(){
     for(var i=0;i<item.length;i++){
         item[i].style.color="green";
     }
+</script> -->
+
+<!-- Modifying CSS with JavaScript Inline Styling: element.style.property
+<p id="demo">change this text</p>
+<script>
+    document.getElementById("demo").style.color="red";
+    document.getElementById("demo").style.fontSize="30px";
+</script> -->
+
+<!-- classList use
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+.active{
+    font-size:30px;
+    color:red;
+}
+</style>
+</head>
+
+<body>
+
+<p id="demo" >change</p>
+<button onclick="change()">change</button>
+
+<script>
+const change = () => {
+    document.getElementById("demo").classList.add("active");
+    if(document.getElementById("demo").classList.contains("active")){
+ alert("Class exists");
+}
+}
+
 </script>
+</body>
+</html> -->
+
+<!-- EVENT HANDLING-dblclick
+<p id="demo">hi</p>
+<p onmouseover="hover()" onmouseout="leave()" id="hover">hover here pls</p>
+<button ondblclick="change()">butt</button>
+<script>
+    function change(){
+        document.getElementById("demo").textContent="changedddd";
+    }
+    function hover(){
+        document.body.style.backgroundColor="yellow";
+    }
+    function leave(){
+        document.body.style.backgroundColor="white";
+    }
+</script> -->
+
+<!-- <input type="text" id="name" onkeyup="keyup()">
+<p id="op"></p>
+<script>
+    function keyup(){
+        let v=document.getElementById("name").value;
+        document.getElementById("op").textContent=v;
+    }
+</script> -->
+
+<!-- <input type="text" onkeydown="keyPressed()">
+
+<script>
+function keyPressed(){
+console.log("Key pressed");
+}
+</script> -->
+<!-- <select onchange="colorchange()" id="color">
+    <option value="red">red</option>
+    <option value="green">green</option>
+</select>
+<script>
+    function colorchange(){
+        let c=document.getElementById("color").value;
+        document.body.style.backgroundColor=c;
+    }
+</script> -->
+<!-- eventlistner
+<p id="demo">hover here bbg</p>
+<script>
+    let x=document.getElementById("demo");
+    // x.addEventListener("mouseover",function(){
+    //     x.style.color="blue";
+    // });
+    // x.addEventListener("mouseout",function(){
+    //     x.style.color="red";
+    // });
+    x.addEventListener("mouseover",()=>{
+        x.style.color="blue";
+    });
+    x.addEventListener("mouseout",()=>{
+        x.style.color="red";
+    });
+</script> -->
+
+<!-- 
+Creating and Removing HTML Elements
+Dynamic webpage modification.
+ createElement()
+ appendChild()
+ remove()
+ replaceChild()
+ insertBefore()  -->
+<!-- <button onclick="creat()">para</button>
+<ul id="list"></ul>
+<p id="remo">delete karo</p>
+<script>
+    function creat(){
+        let li=document.createElement("li");
+        li.textContent="para";
+        document.getElementById("list").appendChild(li);
+        document.getElementById("remo").remove();
+    }
+</script> -->
+
+<!-- <div id="box">
+    <p id="old">old para</p>
+</div>
+<button onclick="replace()">replace</button>
+<script>
+    function replace(){
+        let newpara=document.createElement("p");
+        newpara.textContent="newpara";
+        let p=document.getElementById("box");
+        let old=document.getElementById("old");
+        p.replaceChild(newpara,old);
+    }
+</script> -->
+
+<!-- <ul id="list">
+<li id="second">Second</li>
+</ul>
+<button onclick="addFirst()">Add First</button>
+<script>
+function addFirst(){
+let li = document.createElement("li");
+li.textContent = "First";
+let parent = document.getElementById("list");
+let second = document.getElementById("second");
+parent.insertBefore(li, second);
+}
+</script> -->
+
+<!-- TIMERS
+setTimeout(funtion,delayinms)
+<button onclick="showmessage()">click</button>
+<p id="clock"></p>
+<script>
+    // function showmessage(){
+    //     setTimeout(()=>{
+    //         alert("hey after 3s")
+    //     },3000);
+    // }
+
+    // let c=0;
+        // setInterval(()=>{
+        //     c++;
+        //     document.getElementById("clock").textContent=c;
+        // },1000);
+
+    
+    
+</script> -->
+
+
+<!-- <button onclick="start()">Start</button>
+<button onclick="stop()">Stop</button>
+
+<script>
+
+let timer;
+function start(){
+timer = setTimeout(function(){
+alert("Time up!");
+},5000);
+
+}
+function stop(){
+clearTimeout(timer);
+}
+</script> -->
+
+
+<!-- <button onclick="start()">start</button>
+<button onclick="stop()">stop</button>
+<p id="op"></p>
+<script>
+    let c=0;
+    let timer;
+    function start(){
+        timer=setInterval(()=>{
+            c++;
+            document.getElementById("op").textContent=c;
+        },1000);
+
+    }
+    function stop(){
+        clearInterval(timer);
+    }
+</script> -->
+
+<!-- calculator
+<input id="val" type="text" disabled><br><br>
+<button onclick="append('1')">1</button>
+<button onclick="append('2')">2</button>
+<button onclick="append('3')">3</button><br><br>
+<button onclick="append('4')">4</button>
+<button onclick="append('5')">5</button>
+<button onclick="append('6')">6</button><br><br>
+<button onclick="append('7')">7</button>
+<button onclick="append('8')">8</button>
+<button onclick="append('9')">9</button><br><br>
+<button onclick="append('0')">0</button>
+<button onclick="append('+')">+</button>
+<button onclick="append('-')">-</button>
+<button onclick="append('*')">*</button>
+<button onclick="append('/')">/</button><br><br>
+<button onclick="calculate()">=</button>
+<button onclick="clearr()">clr</button>
+
+<script>
+    let display=document.getElementById("val");
+    function append(value){
+        display.value+=value;
+    }
+    function calculate(){
+        display.value=eval(display.value);
+    }
+    function clearr(){
+        display.value="";
+    }
+</script> -->
+
+ERROR ANDLING
+<!-- <script>
+    try{
+        // let y=2;
+        let x=y+5;
+    }
+    catch(err){
+        console.log("error handles");
+    }
+    finally{
+        console.log("always exexute");
+    }
+</script> -->
+<!-- <script>
+    function divide(a,b){
+        try{
+            if(b==0){
+                throw("not by 0");
+            }
+            let reresult=a/b;
+            console.log(a/b);
+        }
+    
+        catch(err){
+            console.log(err); or err.message
+        }
+        finally{
+            console.log("always exexute");
+        }
+    }
+    divide(5,0);
+</script> -->
+
+<!-- <input id="age">
+<button onclick="checkAge()">Check</button>
+<script>
+function checkAge(){
+try{
+let age = document.getElementById("age").value;
+if(age < 18){
+throw "Age must be above 18";
+}
+alert("Access granted");
+}
+catch(err){
+alert(err);
+}
+finally{
+console.log("Validation completed");
+}
+}
+</script> -->
+
+<body>
+        <!-- <div class="counter-box"> -->
+            <h1 id="counter">0</h1>
+            <button onclick="decrease()">decrease</button>
+            <button onclick="increase()">increase</button>
+            <button onclick="reset()">reset</button>
+        <!-- </div> -->
+        <script>
+        let count=0;
+        function decrease(){
+            count--;
+            document.getElementById("counter").textContent=count;
+        }
+        function increase(){
+            count++;
+            document.getElementById("counter").textContent=count;
+        }
+        function reset(){
+            count=0;
+            document.getElementById("counter").textContent=count;
+        }
+
+        </script>
+    </body>
